@@ -40,6 +40,7 @@ header("location: login.php");
      border-radius: 4px;
      box-sizing: border-box;
    }
+   //ss
    
    input[type=submit] {
      width: 100%;
