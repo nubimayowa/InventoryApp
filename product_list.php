@@ -40,7 +40,6 @@ header("location: login.php");
      border-radius: 4px;
      box-sizing: border-box;
    }
-   //ss
    
    input[type=submit] {
      width: 100%;
@@ -65,20 +64,8 @@ header("location: login.php");
   
    </style>
 
-<body>
+<body>      
 <?php require_once 'productprocess.php'; ?>
-            <?php 
-            
-// $mysqli = new mysqli ('localhost', 'root', '', 'loginsystem',) or die (mysqli_error($mysqli));
-// $result = $mysqli-> query ("SELECT * FROM products ") or die ($mysqli -> error);
-
-pre_r('$result');
-function pre_r ($array){
-   echo '<pre>';
-   print_r($array);
-      echo '</pre>';
-}
-?>
    <div class="wrapper">
       <div class="left">
          <div id="sidebar" class="active">
@@ -115,8 +102,10 @@ function pre_r ($array){
       <div class="right">
          <h2 class="container-title"> Add products</h2>
          <div class="up-info-container">
+
             <div>
-            <?php require_once 'productprocess.php'; ?>
+            <form action="productprocess.php" method="POST">
+          
             
                 
                  <label for="tproduct">Product Name</label>
@@ -129,10 +118,10 @@ function pre_r ($array){
                    <option value="usa">Top</option>
                  </select>
              
-                 <label for="stock">Quantity</label>
+                 <label for="quantity">Quantity</label>
                  <input type="text" name="quantity"  placeholder="How many are you adding..">
 
-                 <label for="stock">Price</label>
+                 <label for="price">Price</label>
                  <input type="text" name="price"  placeholder="Enter the price">
                
                  <input type="submit" name="save" value="Submit">

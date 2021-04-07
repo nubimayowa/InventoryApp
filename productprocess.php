@@ -17,7 +17,9 @@ if (isset($_POST['save'])){
     $price= $_POST['price'];
 
     $mysqli ->query ("INSERT INTO products (product_name, category, quantity, price) VALUES ('$product_name', '$category', 
-  '$quantity', '$price')") or 
+  '$quantity', '$price')") 
+   
+  or 
   die($mysqli->error);
 }
 
