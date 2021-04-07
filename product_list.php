@@ -66,6 +66,15 @@ header("location: login.php");
 
 <body>      
 <?php require_once 'productprocess.php'; ?>
+
+<?php
+$mysqli = new mysqli ('localhost', 'root', '', 'loginsystem',) or die (mysqli_error($mysqli));
+$result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
+?>
+
+
+
+
    <div class="wrapper">
       <div class="left">
          <div id="sidebar" class="active">
@@ -105,24 +114,22 @@ header("location: login.php");
 
             <div>
             <form action="productprocess.php" method="POST">
-          
-            
-                
+              
                  <label for="tproduct">Product Name</label>
-                 <input type="text" name="product_name"  placeholder="Product name..">
+                 <input type="text" name="product_name"  value="<?php echo $product_name;?>"
+                  placeholder="Product name..">
                 
                  <label for="category">Category</label>
-                 <select id="category" name="category">
-                   <option value="australia">Shoe</option>
-                   <option value="canada">Socks</option>
-                   <option value="usa">Top</option>
-                 </select>
+                 <input type="text" name="category"  value="<?php echo $category;?>"
+                  placeholder="Add category...">
              
                  <label for="quantity">Quantity</label>
-                 <input type="text" name="quantity"  placeholder="How many are you adding..">
+                 <input type="text" name="quantity" value="<?php echo $quantity;?>"
+                   placeholder="How many are you adding..">
 
                  <label for="price">Price</label>
-                 <input type="text" name="price"  placeholder="Enter the price">
+                 <input type="text" name="price"  value="<?php echo $price;?>"
+                  placeholder="Enter the price">
                
                  <input type="submit" name="save" value="Submit">
                </form>
@@ -174,33 +181,45 @@ header("location: login.php");
 
          <h2 class="container-title">products info</h2>
          <input type="text" id="myInput" placeholder='Search for product by name..'>
-         <div class="down-info-container">
+         <div class="row down-info-container">
             <table class="table3 searchTable">
                <thead>
                   <tr>
-                     <th>PRODUCT CATEGORY</th>
                      <th>PRODUCT NAME</th>
+                     <th>CATEGORY</th>
                      <th>QUANTITY</th>
                      <th>PRICE</th>
                      <!-- <th>LAST PURCHASE DATE</th> -->
                      <th>OPERATION</th>
                   </tr>
                </thead>
+
+               <?php
+               while ($row= $result-> fetch_assoc()):?>
                <tbody>
                   <tr>
-                     <td>SHOE</td>
-                     <td>Wears</td>
-                     <td>9</td>
-                     <td>120</td>
-                     <!-- <td>12/09/2018</td> -->
-                     <td><button class="delete">Delete</button><button class="edit">Edit</button></td>
+                     <td><?php echo $row ["product_name"];?></td>
+                     <td><?php echo $row ["category"];?></td>
+                     <td><?php echo $row ["quantity"];?></td>
+                     <td><?php echo $row ["price"];?></td>
+                     <td>
+                      <a href="product_list.php?edit=<?php echo $row['product_id'];?>" class="edit">Edit</a>
+                      <a href="productprocess.php?delete=<?php echo $row['product_id'];?>"class="delete">Delete</a>
+                      </td>
                   </tr>
-                  
-               
-
+                  <?php endwhile;?>
                </tbody>
             </table>
          </div>
+
+         <?php
+
+         function pre_r ($array){
+            echo '<pre>';
+            print_r($array);
+            echo "</pre>";
+         }
+         ?>
       </div>
       <!-- End of right side -->
    </div>
