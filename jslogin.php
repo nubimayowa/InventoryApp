@@ -6,9 +6,6 @@ require_once("config.php");
 //echo  "Hello from jslogin.php";
 
 
-
-
-
 $password = $_POST['password'];
 $username = $_POST['username'];
 
