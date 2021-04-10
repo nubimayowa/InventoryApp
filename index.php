@@ -48,12 +48,13 @@ header("location: login.php");
                   <li><i class="fas fa-tachometer-alt"></i> Dashboard
                   </li>
                </a>
+               <a href="attendants.php">
+                  <li><i class="fas fa-user-alt"></i> Attendant</li>
+               </a>
                <a href="product_list.php">
                   <li><i class="fas fa-people-carry"></i> products</li>
                </a>
-               <a href="attendants.php">
-                  <li><i class="fas fa-user-alt"></i> Add Attendant</li>
-               </a>
+              
                <a href="sales.php">
                   <li><i class="fas fa-dollar-sign"></i> sales</li>
                </a>

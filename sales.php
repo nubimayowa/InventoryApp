@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-shsh
+
 <head>
    <meta charset="utf-8" />
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,17 +50,18 @@ shsh
                <span></span>
             </div>
             <!-- toggle-button -->
-            <h1 id="logo">shoppy</h1>
+            <h1 id="logo">Lifted Store</h1>
             <ul>
                <a href="index.php">
                   <li><i class="fas fa-tachometer-alt"></i> Dashboard</li>
                </a>
-               <a href="product_list.php">
-                  <li><i class="fas fa-people-carry"></i> products</li>
-               </a>
                <a href="attendants.php">
                   <li><i class="fas fa-user-alt"></i> attendants</li>
                </a>
+               <a href="product_list.php">
+                  <li><i class="fas fa-people-carry"></i> products</li>
+               </a>
+               
                <a class="arrow-container" href="#">
                   <div class="arrow-left"></div>
                   <li><i class="fas fa-dollar-sign"></i> sales</li>

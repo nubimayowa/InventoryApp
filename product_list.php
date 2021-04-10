@@ -40,6 +40,15 @@ header("location: login.php");
      border-radius: 4px;
      box-sizing: border-box;
    }
+   input[type=date], select {
+     width: 100%;
+     padding: 10px 50px;
+     margin: 8px 0;
+     display: inline-block;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     box-sizing: border-box;
+   }
    
    input[type=submit] {
      width: 100%;
@@ -72,9 +81,6 @@ $mysqli = new mysqli ('localhost', 'root', '', 'loginsystem',) or die (mysqli_er
 $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
 ?>
 
-
-
-
    <div class="wrapper">
       <div class="left">
          <div id="sidebar" class="active">
@@ -83,7 +89,7 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
                <span></span>
                <span></span>
             </div>
-            <!-- toggle-button -->
+           
             <h1 id="logo">shoppy</h1>
             <ul>
                <a href="index.php">
@@ -105,7 +111,7 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
 
             </ul>
          </div>
-         <!-- sidebar -->
+       
       </div>
       <!-- End of left side -->
       <div class="right">
@@ -113,10 +119,11 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
          <div class="up-info-container">
 
             <div>
+            
             <form action="productprocess.php" method="POST">
               
                  <label for="tproduct">Product Name</label>
-                 <input type="text" name="product_name"  value="<?php echo $product_name;?>"
+                 <input type="text" name="product_name"  value="<?php echo $product_name; ?>"
                   placeholder="Product name..">
                 
                  <label for="category">Category</label>
@@ -130,54 +137,15 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
                  <label for="price">Price</label>
                  <input type="text" name="price"  value="<?php echo $price;?>"
                   placeholder="Enter the price">
+                  <label for="date">Purchase Date</label>
+                 <input type="date"  name="date">
                
                  <input type="submit" name="save" value="Submit">
                </form>
              </div>
-            <!-- <a href="#">
-               <h2 class="view-all add-product"><i class="fas fa-plus"></i> add product</h2>
-            </a> -->
-            <!-- <div class="info-block">
-               <div class="info-block-header info-block-header1">
-                  <h2><i class="fas fa-shopping-bag"></i></h2>
-               </div>
-               <div class="info-block-content">
-                  <h3>product types</h3>
-                  <p>12</p>
-               </div>
-               <div class="info-block-footer">
-                  <p><i class="fas fa-calendar-alt"></i> last purchase date <span class="date">20/12/2018</span></p>
-               </div>
-            </div> -->
-            <!-- info-block -->
-            <!-- <div class="info-block ">
-               <div class="info-block-header info-block-header2">
-                  <h2><i class="fas fa-signal"></i></h2>
-               </div>
-               <div class="info-block-content">
-                  <h3>total quantity</h3>
-                  <p>20</p>
-               </div>
-               <div class="info-block-footer">
-                  <p><i class="fas fa-calendar-alt"></i> last purchase date <span class="date">20/12/2018</span></p>
-               </div>
-            </div> -->
-            <!-- info-block -->
-            <!-- <div class="info-block ">
-               <div class="info-block-header info-block-header3">
-                  <h2><i class="fas fa-money-check-alt"></i></h2>
-               </div>
-               <div class="info-block-content">
-                  <h3>total price</h3>
-                  <p><i class="fas fa-dollar-sign"></i> 9000</p>
-               </div>
-               <div class="info-block-footer">
-                  <p><i class="fas fa-calendar-alt"></i> last purchase date <span class="date">20/12/2018</span></p>
-               </div>
-            </div> -->
-            <!-- info-block -->
+         
          </div>
-         <!-- up-info-container -->
+        
 
          <h2 class="container-title">products info</h2>
          <input type="text" id="myInput" placeholder='Search for product by name..'>
@@ -189,7 +157,7 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
                      <th>CATEGORY</th>
                      <th>QUANTITY</th>
                      <th>PRICE</th>
-                     <!-- <th>LAST PURCHASE DATE</th> -->
+                     <th> PURCHASE DATE</th>
                      <th>OPERATION</th>
                   </tr>
                </thead>
@@ -202,6 +170,7 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
                      <td><?php echo $row ["category"];?></td>
                      <td><?php echo $row ["quantity"];?></td>
                      <td><?php echo $row ["price"];?></td>
+                     <td><?php echo $row ["date"];?></td>
                      <td>
                       <a href="product_list.php?edit=<?php echo $row['product_id'];?>" class="edit">Edit</a>
                       <a href="productprocess.php?delete=<?php echo $row['product_id'];?>"class="delete">Delete</a>
@@ -284,3 +253,12 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+

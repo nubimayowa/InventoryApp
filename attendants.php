@@ -22,6 +22,47 @@
      border-radius: 4px;
      box-sizing: border-box;
    }
+ 
+   input[type=tel]  , select {
+     width: 100%;
+     padding: 10px 50px;
+     margin: 8px 0;
+     display: inline-block;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     box-sizing: border-box;
+   }
+   input[type=date]  , select {
+     width: 100%;
+     padding: 10px 50px;
+     margin: 8px 0;
+     display: inline-block;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     box-sizing: border-box;
+   }
+   
+   input[type=email], select {
+     width: 100%;
+     padding: 10px 50px;
+     margin: 8px 0;
+     display: inline-block;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     box-sizing: border-box;
+   }
+   input[type=email], select {
+     width: 100%;
+     padding: 10px 50px;
+     margin: 8px 0;
+     display: inline-block;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     box-sizing: border-box;
+   }
+   
+   
+   
    
    input[type=submit] {
      width: 100%;
@@ -56,13 +97,14 @@
                <a href="index.php">
                   <li><i class="fas fa-tachometer-alt"></i> Dashboard</li>
                </a>
-               <a href="product_list.php">
-                  <li><i class="fas fa-people-carry"></i> Add products</li>
-               </a>
                <a class="arrow-container" href="#">
                   <div class="arrow-left"></div>
-                  <li><i class="fas fa-user-alt"></i> Add attendants</li>
+                  <li><i class="fas fa-user-alt"></i> attendants</li>
                </a>
+               <a href="product_list.php">
+                  <li><i class="fas fa-people-carry"></i> products</li>
+               </a>
+            
                <a href="sales.php">
                   <li><i class="fas fa-dollar-sign"></i> sales</li>
                </a>
@@ -81,26 +123,26 @@
             <div>
                <form >
                 
-                 <label for="fname">Employee ID</label>
-                 <input type="text" id="fname" name="firstname" placeholder="Enter Employee ID..">
-                 <!-- <label for="country">Country</label>
-                 <select id="country" name="country">
-                   <option value="australia">Australia</option>
-                   <option value="canada">Canada</option>
-                   <option value="usa">USA</option>
-                 </select> -->
-             
-                 <label for="lname">Username</label>
-                 <input type="text" id="email" name="email" placeholder="Enter Username..">
+               <label for="Eid">Employment Id</label>
+                 <input type="text"   placeholder="Enter Employment Id..">
 
-                
-                 <label for="lname">Phone Number</label>
-                 <input type="text" id="email" name="email" placeholder="Enter Phone Number..">
-                 <label for="lname">Password</label>
-                 <input type="text" id="email" name="email" placeholder="Enter Password..">
-             
-                
+                 <label for="lname">Staff Name</label>
+                 <input type="text"   placeholder="Enter Staff Name..">
                
+                
+                 <label for="mon">Mobile Number</label>
+                 <input type="tel"   placeholder="Enter Mobile Number..">
+
+                 <label for="lname">Password</label>
+                 <input type="text"  placeholder="Enter Password..">
+
+                 <label for="email">Email Address</label>
+                 <input type="email" placeholder="Enter Email Address..">
+                
+                <!-- employmemt date -->
+                 <label for="Doe">Employment Date</label>
+                 <input type="date"  id="doe">
+
                  <input type="submit" value="Submit">
                </form>
              </div>
@@ -156,12 +198,13 @@
             <table class="table4 searchTable">
                <thead>
                   <tr>
-                     <th>EMPLOYEE ID</th>
+                     <th>EMPLOYMENT ID</th>
                    
-                     <th>USERNAME</th>
+                     <th>STAFF NAME</th>
                      <th>MOBILE NUMBER</th>
-                     <!-- <th>EMPLOYMENT DATE</th>
-                     <th>TOTAL SALES</th> -->
+                     <th>EMAIL ADRESS</th>
+                    
+                     <th>EMPLOYMENT DATE</th>
                      <th>OPERATION</th>
                   </tr>
                </thead>
@@ -170,9 +213,8 @@
                   <td>J88642</td>
                      <td>Mayowa</td>
                      <td>09087654534</td>
-                     <!-- <td>sanusilamido56@gmail.com</td> -->
-                     <!-- <td>12/09/2018</td>
-                     <td> 23000</td> -->
+                  <td>sanusilamido56@gmail.com</td> 
+                  <td>12/09/2017</td>
                      <td><button class="delete">Delete</button><button class="edit">Edit</button></td>
                   </tr>
                   <!-- <tr>

@@ -1,4 +1,3 @@
-
 <?php
 // $db_user = 'root';//or localhost
 // $db_pass = ''; // your db_name
@@ -21,6 +20,7 @@ $date ="";
 
 
 
+
 if (isset($_POST['save'])){
     $product_name = $_POST['product_name'];
     $category = $_POST['category'];
@@ -30,8 +30,8 @@ if (isset($_POST['save'])){
 
    
 
-    $mysqli ->query ("INSERT INTO products (product_name, category, quantity, price, date) VALUES ('$product_name', '$category', 
-  '$quantity', '$price', '$date')") 
+    $mysqli ->query ("INSERT INTO addproduct (product_name, category, quantity, date, price) VALUES ('$product_name', '$category', 
+  '$quantity', '$date',$price')") 
    
   or 
   die($mysqli->error);
@@ -75,7 +75,3 @@ if (isset($_GET["edit"])){
 
 
 ?>
-
-
-
-
