@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2021 at 03:04 PM
+-- Generation Time: Apr 07, 2021 at 11:15 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -40,8 +40,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `category`, `quantity`, `price`) VALUES
-(1, 'Nike Yeezy', 'australia', 6, '#70000'),
-(2, 'Nike Yeezy', 'australia', 6, '#80000');
+(10, 'Nike Yeezy', 'Shoe', 90, '#70000'),
+(11, 'Nike Yeezy', 'Shoe', 90, '#70000');
 
 -- --------------------------------------------------------
 
@@ -114,7 +114,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user`
