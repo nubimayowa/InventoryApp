@@ -1,5 +1,5 @@
 <?php
-
+echo hash("SHA256", "admin@123");
 session_start();
 if (isset($_SESSION['userlogin'])){
     header("Location: index.php");
@@ -16,7 +16,7 @@ if (isset($_SESSION['userlogin'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" media="screen" href="./styles/main.css" />
+    <link href="./styles/main.css"  rel="stylesheet" media="screen" />
 </head>
 
 <body>
@@ -60,7 +60,7 @@ if (isset($_SESSION['userlogin'])){
                 data: {username: username, password: password},
                 success: function(data){
                     alert(data);
-                    if ($.trim(data) === "Login Successful. Redirecting..."){
+                    if ($.trim(data) === "1"){
                         setTimeout('window.location.href = "index.php"', 2000);
                         
                         

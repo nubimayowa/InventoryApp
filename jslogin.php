@@ -9,10 +9,9 @@ require_once("config.php");
 $password = $_POST['password'];
 $username = $_POST['username'];
 
-$sql = "SELECT * FROM users WHERE username = ? AND password = ? LIMIT 1";
+$sql = "SELECT * FROM registration WHERE empid = ? AND pass = ? LIMIT 1";
 $stmtselect = $db->prepare($sql);
-$result = $stmtselect-> execute([$username, $password]);
-
+$result = $stmtselect-> execute([$username, hash('SHA256', $password)]);
 
 if($result){
     $user =  $stmtselect->fetch(PDO::FETCH_ASSOC);
@@ -21,7 +20,7 @@ if($result){
 
     if ($stmtselect->rowCount() > 0){
         $_SESSION["userlogin"] = $user;
-        echo 'Login Successful. Redirecting...';
+        echo '1';
     }else {
         echo 'Please check your credentials properly';
 
