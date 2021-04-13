@@ -134,7 +134,7 @@ header("location:login.php");
          <!-- sidebar -->
       </div>
       <!-- End of left side -->
-      <div class="right" style="padding-right: 70px;padding-left: 20px;">
+      <div class="right" ">
          <h2 class="container-title"> Create attendants</h2>
          <div class="up-info-container">
             <div>
@@ -240,7 +240,7 @@ header("location:login.php");
 
                }
                   alert("Attended added successful")
-               }
+               
             } catch(err) {
                console.log({err})
             }
