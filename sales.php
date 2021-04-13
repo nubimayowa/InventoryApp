@@ -1,3 +1,20 @@
+<?php
+
+session_start();
+if (!isset($_SESSION['userlogin'])){
+    header("location: login.php");
+}
+
+if (isset($_GET['logout'])){
+session_destroy();
+unset($_SESSION);
+header("location: login.php");
+
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -49,7 +66,7 @@
                <span></span>
                <span></span>
             </div>
-            <!-- toggle-button -->
+         
             <h1 id="logo">Lifted Store</h1>
             <ul>
                <a href="index.php">
@@ -66,7 +83,7 @@
                   <div class="arrow-left"></div>
                   <li><i class="fas fa-dollar-sign"></i> sales</li>
                </a>
-               <a href="/index.php">
+               <a href="sales.php?logout=true">
                   <li><i class="fas fa-sign-out-alt"></i> logout</li>
                </a>
 
@@ -110,45 +127,9 @@
                  <input type="submit" value="Submit">
                </form>
              </div>
-             
-            <!-- <div class="info-block">
-               <div class="info-block-header info-block-header4">
-                  <h3><i class="fas fa-money-check-alt"></i> total sales</h3>
-               </div>
-               <div class="info-block-content">
-                  <p><i class="fas fa-dollar-sign"></i> 9000</p>
-               </div>
-               <div class="info-block-footer">
-                  <p><i class="far fa-clock"></i> last 24 hours</p>
-               </div>
-            </div> -->
-            <!-- info-block -->
-            <!-- <div class="info-block">
-               <div class="info-block-header info-block-header2">
-                  <h3><i class="fas fa-money-check-alt"></i> total sales</h3>
-               </div>
-               <div class="info-block-content">
-                  <p><i class="fas fa-dollar-sign"></i> 21000</p>
-               </div>
-               <div class="info-block-footer">
-                  <p><i class="far fa-clock"></i> last 7 days</p>
-               </div>
-            </div> -->
-            <!-- info-block -->
-            <!-- <div class="info-block">
-               <div class="info-block-header info-block-header4">
-                  <h3><i class="fas fa-money-check-alt"></i> total sales</h3>
-               </div>
-               <div class="info-block-content">
-                  <p><i class="fas fa-dollar-sign"></i> 40000</p>
-               </div>
-               <div class="info-block-footer">
-                  <p><i class="far fa-clock"></i> last 30 days</p>
-               </div>
-            </div> -->
-            <!-- info-block -->
+         
          </div>
-         <!-- up-info-container -->
+        
 
          <h2 class="container-title">sales info</h2>
          <input type="text" id="myInput" placeholder='Search by attendant name..'>
@@ -211,9 +192,9 @@
             </table>
          </div>
       </div>
-      <!-- End of right side -->
+  
    </div>
-   <!-- End of wrapper -->
+  
 
 
    <script src="/js/main.js"></script>

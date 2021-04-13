@@ -8,10 +8,9 @@ if (!isset($_SESSION['userlogin'])){
 if (isset($_GET['logout'])){
 session_destroy();
 unset($_SESSION);
-header("location: login.php");
+header("location:login.php");
 
 }
-
 
 ?>
 

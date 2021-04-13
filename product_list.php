@@ -142,17 +142,18 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
                <a href="index.php">
                   <li><i class="fas fa-tachometer-alt"></i> Dashboard</li>
                </a>
+               <a href="attendants.php">
+                  <li><i class="fas fa-user-alt"></i> attendants</li>
+               </a>
                <a class="arrow-container" href="#">
                   <div class="arrow-left"></div>
                   <li><i class="fas fa-people-carry"></i> products</li>
                </a>
-               <a href="attendants.php">
-                  <li><i class="fas fa-user-alt"></i> attendants</li>
-               </a>
+             
                <a href="sales.php">
                   <li><i class="fas fa-dollar-sign"></i> sales</li>
                </a>
-               <a href="index.php?logout=true">
+               <a href="product_list.php?logout=true">
                   <li><i class="fas fa-sign-out-alt"></i> logout</li>
                </a>
 

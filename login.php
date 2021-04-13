@@ -16,7 +16,7 @@ if (isset($_SESSION['userlogin'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link href="./styles/main.css"  rel="stylesheet" media="screen" />
+    <link rel="stylesheet" media="screen" href="./styles/main.css" />
 </head>
 
 <body>
@@ -60,7 +60,7 @@ if (isset($_SESSION['userlogin'])){
                 data: {username: username, password: password},
                 success: function(data){
                     alert(data);
-                    if ($.trim(data) === "1"){
+                    if ($.trim(data) === "Login Successful. Redirecting..."){
                         setTimeout('window.location.href = "index.php"', 2000);
                         
                         

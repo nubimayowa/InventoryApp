@@ -21,7 +21,7 @@ if($result){
 
     if ($stmtselect->rowCount() > 0){
         $_SESSION["userlogin"] = $user;
-        echo '1';
+        echo 'Login Successful. Redirecting...';
     }else {
         echo 'Please check your credentials properly';
 

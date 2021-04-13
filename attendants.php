@@ -1,3 +1,21 @@
+
+
+
+<?php
+
+session_start();
+if (!isset($_SESSION['userlogin'])){
+    header("location: login.php");
+}
+
+if (isset($_GET['logout'])){
+session_destroy();
+unset($_SESSION);
+header("location:login.php");
+
+}
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -81,7 +99,6 @@
    
   
    </style>
-
 <body>
    <div class="wrapper">
       <div class="left">
@@ -108,10 +125,9 @@
                <a href="sales.php">
                   <li><i class="fas fa-dollar-sign"></i> sales</li>
                </a>
-               <a href="/index.php">
+               <a href="attendants.php?logout=true">
                   <li><i class="fas fa-sign-out-alt"></i> logout</li>
                </a>
-
             </ul>
          </div>
          <!-- sidebar -->
@@ -125,30 +141,26 @@
                 
                <label for="Eid">Employment Id</label>
                  <input type="text" name="empid"  placeholder="Enter Employment Id..">
-
                  <label for="lname">Staff Name</label>
                  <input type="text" name="staff_name" placeholder="Enter Staff Name..">
                
                 
                  <label for="mon">Mobile Number</label>
                  <input type="tel" name="mob"   placeholder="Enter Mobile Number..">
-
                  <label for="lname">Password</label>
                  <input type="text" name="pass"  placeholder="Enter Password..">
-
                  <label for="email">Email Address</label>
                  <input type="email" name="email" placeholder="Enter Email Address..">
                 
                 <!-- employmemt date -->
                  <label for="Doe">Employment Date</label>
                  <input type="date"  name="doe">
-
                  <input type="submit" value="Submit">
                </form>
              </div>
+             </div>
  
            
-
          <h2 class="container-title">attendants info</h2>
          <input type="text" id="myInput" placeholder='Search for staff by name..'>
          <div class="down-info-container">
@@ -182,10 +194,7 @@
       <!-- End of right side -->
    </div>
    <!-- End of wrapper -->
-
-
    <script src="/js/main.js"></script>
    <script type="text/javascript"> (function () { let css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
 </body>
-
 </html>
