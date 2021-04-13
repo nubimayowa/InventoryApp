@@ -1,3 +1,20 @@
+<?php
+
+session_start();
+if (!isset($_SESSION['userlogin'])){
+    header("location: login.php");
+}
+
+if (isset($_GET['logout'])){
+session_destroy();
+unset($_SESSION);
+header("location:login.php");
+
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -108,7 +125,7 @@
                <a href="sales.php">
                   <li><i class="fas fa-dollar-sign"></i> sales</li>
                </a>
-               <a href="/index.php">
+               <a href="attendants.php?logout=true">
                   <li><i class="fas fa-sign-out-alt"></i> logout</li>
                </a>
 

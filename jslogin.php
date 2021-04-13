@@ -7,11 +7,11 @@ require_once("config.php");
 
 
 $password = $_POST['password'];
-$username = $_POST['username'];
+$empId = $_POST['empId'];
 
 $sql = "SELECT * FROM registration WHERE empid = ? AND pass = ? LIMIT 1";
 $stmtselect = $db->prepare($sql);
-$result = $stmtselect-> execute([$username, hash('SHA256', $password)]);
+$result = $stmtselect-> execute([$empId, hash('SHA256', $password)]);
 
 if($result){
     $user =  $stmtselect->fetch(PDO::FETCH_ASSOC);
