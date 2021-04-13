@@ -240,7 +240,6 @@ header("location:login.php");
 
                }
                   alert("Attended added successful")
-               }
             } catch(err) {
                console.log({err})
             }
