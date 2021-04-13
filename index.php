@@ -72,7 +72,7 @@ header("location:login.php");
          <!-- sidebar -->
       </div>
       <!-- End of left side -->
-      <div class="right">
+      <div class="right" style="padding-right: 70px;padding-left: 20px;">
          <h2 class="container-title">latest products</h2>
          <div class="up-info-container">
             <div class="info-block">
