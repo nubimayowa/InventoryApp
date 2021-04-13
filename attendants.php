@@ -1,3 +1,21 @@
+
+
+
+<?php
+
+session_start();
+if (!isset($_SESSION['userlogin'])){
+    header("location: login.php");
+}
+
+if (isset($_GET['logout'])){
+session_destroy();
+unset($_SESSION);
+header("location:login.php");
+
+}
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -81,7 +99,6 @@
    
   
    </style>
-
 <body>
    <div class="wrapper">
       <div class="left">
@@ -108,48 +125,42 @@
                <a href="sales.php">
                   <li><i class="fas fa-dollar-sign"></i> sales</li>
                </a>
-               <a href="/index.php">
+               <a href="attendants.php?logout=true">
                   <li><i class="fas fa-sign-out-alt"></i> logout</li>
                </a>
-
             </ul>
          </div>
          <!-- sidebar -->
       </div>
       <!-- End of left side -->
-      <div class="right" style="padding-right: 70px;padding-left: 20px;">
+      <div class="right">
          <h2 class="container-title"> Create attendants</h2>
          <div class="up-info-container">
             <div>
-               <form class="attendant">
+               <form >
                 
-               <label for="Eid">Employment Id *</label>
-                 <input type="text" name="empid"  placeholder="Enter Employment Id.." required="true">
-
-                 <label for="lname">Staff Name *</label>
-                 <input type="text" name="staff_name" placeholder="Enter Staff Name.." required="true">
+               <label for="Eid">Employment Id</label>
+                 <input type="text" name="empid"  placeholder="Enter Employment Id..">
+                 <label for="lname">Staff Name</label>
+                 <input type="text" name="staff_name" placeholder="Enter Staff Name..">
                
                 
-                 <label for="mon">Mobile Number *</label>
-                 <input type="tel" name="mob"   placeholder="Enter Mobile Number.." required="true">
-
-                 <label for="lname">Password *</label>
-                 <input type="text" name="pass"  placeholder="Enter Password.." required="true">
-
-                 <label for="email">Email Address *</label>
-                 <input type="email" name="email" placeholder="Enter Email Address.." required="true">
+                 <label for="mon">Mobile Number</label>
+                 <input type="tel" name="mob"   placeholder="Enter Mobile Number..">
+                 <label for="lname">Password</label>
+                 <input type="text" name="pass"  placeholder="Enter Password..">
+                 <label for="email">Email Address</label>
+                 <input type="email" name="email" placeholder="Enter Email Address..">
                 
                 <!-- employmemt date -->
-                 <label for="Doe">Employment Date *</label>
-                 <input type="date"  name="doe" required="true">
-
+                 <label for="Doe">Employment Date</label>
+                 <input type="date"  name="doe">
                  <input type="submit" value="Submit">
                </form>
              </div>
              </div>
  
            
-
          <h2 class="container-title">attendants info</h2>
          <input type="text" id="myInput" placeholder='Search for staff by name..'>
          <div class="down-info-container">
@@ -183,8 +194,6 @@
       <!-- End of right side -->
    </div>
    <!-- End of wrapper -->
-
-
    <script src="/js/main.js"></script>
    <script type="text/javascript"> 
       (function async () { 
@@ -226,5 +235,4 @@
 
    </script>
 </body>
-
 </html>

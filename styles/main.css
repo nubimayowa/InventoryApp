@@ -88,7 +88,8 @@ body {
 	border-top: 5px solid #ff656c;
 }
 
-.fullname,
+
+
 .username,
 .password {
 	width: 100%;
@@ -102,15 +103,6 @@ body {
 	outline: none;
 }
 
-.fullname {
-	background: #fff url("/images/5.png") 20px top no-repeat;
-	background-size: 16px 80px;
-}
-
-.fullname:focus {
-	background: #fff url("/images/5.png") 20px bottom no-repeat;
-	background-size: 16px 80px;
-}
 
 .username {
 	background: #fff url("/images/4.png") 20px top no-repeat;
@@ -132,10 +124,6 @@ body {
 	background-size: 16px 80px;
 }
 
-.attendant-block input:active,
-.attendant-block input:focus {
-	border: 1px solid #ff656c;
-}
 
 .login {
 	width: 100%;
@@ -182,12 +170,12 @@ body {
 	color: #ff656c;
 }
 
-.not-registered,
+/* .not-registered,
 .have-account {
 	text-align: center;
 	font-size: 14px;
 	color: #ff656c;
-}
+} */
 /*End of Login page*/
 
 /*dashboard info */
@@ -202,7 +190,7 @@ body {
 	position: relative;
 }
 
-.container-title {
+ .container-title {
 	text-align: center;
 	background: #000000;
 	color: #ffffff;
@@ -214,14 +202,14 @@ body {
 	margin-top: 2em;
 	margin-bottom: 1.5em;
 	padding-top: 0.5em;
-}
+} 
 
 .container-title:hover {
 	background: #214b63;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.2);
-}
+} 
 
-.view-all {
+ .view-all {
 	position: absolute;
 	right: 5%;
 	top: -25%;
@@ -235,13 +223,9 @@ body {
 	font-weight: 500;
 	margin-top: 2em;
 	padding-top: 0.5em;
-}
+} 
 
-.add-product {
-	top: -35%;
-	right: 0.5%;
-	width: 20%;
-}
+
 
 .view-all:hover {
 	background: #214b63;
