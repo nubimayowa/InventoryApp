@@ -16,7 +16,6 @@ header("location: login.php");
 ?>
 
 
-
 <!DOCTYPE html>
 <html>
 
@@ -28,9 +27,57 @@ header("location: login.php");
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,500' rel='stylesheet' type='text/css'>
    <link rel="stylesheet" media="screen" href="./styles/main.css" />
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+	<script src="ajax.js"></script>
+   <script src="/js/main.js"></script>
+   <script>
+
+function ValidationForm() {
+  let product_name = document.forms["RegForm"]["product_name"];
+  let quantity = document.forms["RegForm"]["quantity"];
+  let category = document.forms["RegForm"]["category"];
+  let price = document.forms["RegForm"]["price"];
+  let date = document.forms["RegForm"]["date"];
+
+  if (product_name.value == "") {
+    alert("Please enter a product name.");
+    product_name.focus();
+    return false;
+  }
+  
+  if (quantity.value == "") {
+    alert("Please enter quantity.");
+    quantity.focus();
+    return false;
+  }
+  if (category.value == "") {
+    alert("Please enter a category type");
+    category.focus();
+    return false;
+  }
+  if (price.value == "") {
+    alert("Please enter the price");
+    price.focus();
+    return false;
+  }
+  if (date.value == "") {
+    alert("Please select the date");
+    date.focus();
+    return false;
+  }
+  alert("Product successfully created!");
+  return true;
+ 
+}
+
+</script>
 </head>
 
 <style>
+
    input[type=text], select {
      width: 100%;
      padding: 10px 50px;
@@ -51,7 +98,7 @@ header("location: login.php");
    }
    
    input[type=submit] {
-     width: 100%;
+     width: 50%;
      background-color: #000000;
      color: white;
      padding: 14px 20px;
@@ -119,30 +166,50 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
          <div class="up-info-container">
 
             <div>
+          
             
-            <form action="productprocess.php" method="POST">
+            <form name="RegForm" action="productprocess.php" method="POST" onsubmit="return ValidationForm()" >
+           
               
-                 <label for="tproduct">Product Name</label>
-                 <input type="text" name="product_name"  value="<?php echo $product_name; ?>"
+               <input type="hidden" name= "product_id" required id="product_id" value="<?php echo $product_id ?>">
+         
+               
+                 <label >Product Name</label>
+                 <input type="text" name="product_name" id="product_name"  value="<?php echo $product_name; ?>"
                   placeholder="Product name..">
-                
-                 <label for="category">Category</label>
-                 <input type="text" name="category"  value="<?php echo $category;?>"
-                  placeholder="Add category...">
-             
-                 <label for="quantity">Quantity</label>
+
+                  <label for="quantity">Quantity</label>
                  <input type="text" name="quantity" value="<?php echo $quantity;?>"
                    placeholder="How many are you adding..">
+                 
+                
+
+                   <label for="category">Category</label>
+                 <input type="text" name="category" value="<?php echo $category;?>"
+                   placeholder="Enter the category...">
+
+                 
+             
+                
 
                  <label for="price">Price</label>
                  <input type="text" name="price"  value="<?php echo $price;?>"
                   placeholder="Enter the price">
                   <label for="date">Purchase Date</label>
-                 <input type="date"  name="date">
+                 <input type="date"  name="date" id="date" value="<?php echo $date;?>">
                
+                 <div>
+               <?php
+               if ($update == true):
+                  ?>
+                   <input type="submit" name="update" value="Update">
+                   <?php else: ?>
+
                  <input type="submit" name="save" value="Submit">
+                 <?php endif; ?>
+                   </div>
                </form>
-             </div>
+             </div> 
          
          </div>
         
@@ -196,60 +263,13 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
 
 
    <script src="/js/main.js"></script>
-   
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
-
-<script>
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseConfig = {
-    apiKey: "AIzaSyCmPdzS8TAP6a00SD-3xYTXKkWsUe1Qle8",
-    authDomain: "myportal-2f0f0.firebaseapp.com",
-    projectId: "myportal-2f0f0",
-    storageBucket: "myportal-2f0f0.appspot.com",
-    messagingSenderId: "912943328976",
-    appId: "1:912943328976:web:c1cb16459f056ae9d278d5",
-    measurementId: "G-523F04JKEN"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-  var messagesRef = firebase.database() 
-            .ref('Collected Data'); 
-          
-        document.getElementById('product-form') 
-            .addEventListener('submit', submitForm); 
   
-        function submitForm(e) { 
-            e.preventDefault(); 
-  
-            // Get values 
-            var name = getInputVal('tproduct'); 
-            var email = getInputVal('stock'); 
-  
-            saveMessage(name, email); 
-            document.getElementById('contactForm').reset(); 
-        } 
-        function getInputVal(id) { 
-            return document.getElementById(id).value; 
-        } 
-  
-        // Save message to firebase 
-        function saveMessage(name, email) { 
-            var newMessageRef = messagesRef.push(); 
-            newMessageRef.set({ 
-                name: name, 
-                email: email, 
-            }); 
-        } 
 </script>
 
+
    <script type="text/javascript"> (function () { let css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+
+
 </body>
 
 </html>

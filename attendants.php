@@ -65,7 +65,7 @@
    
    
    input[type=submit] {
-     width: 100%;
+     width: 50%;
      background-color: #000000;
      color: white;
      padding: 14px 20px;
@@ -124,73 +124,30 @@
                <form >
                 
                <label for="Eid">Employment Id</label>
-                 <input type="text"   placeholder="Enter Employment Id..">
+                 <input type="text" name="empid"  placeholder="Enter Employment Id..">
 
                  <label for="lname">Staff Name</label>
-                 <input type="text"   placeholder="Enter Staff Name..">
+                 <input type="text" name="staff_name" placeholder="Enter Staff Name..">
                
                 
                  <label for="mon">Mobile Number</label>
-                 <input type="tel"   placeholder="Enter Mobile Number..">
+                 <input type="tel" name="mob"   placeholder="Enter Mobile Number..">
 
                  <label for="lname">Password</label>
-                 <input type="text"  placeholder="Enter Password..">
+                 <input type="text" name="pass"  placeholder="Enter Password..">
 
                  <label for="email">Email Address</label>
-                 <input type="email" placeholder="Enter Email Address..">
+                 <input type="email" name="email" placeholder="Enter Email Address..">
                 
                 <!-- employmemt date -->
                  <label for="Doe">Employment Date</label>
-                 <input type="date"  id="doe">
+                 <input type="date"  name="doe">
 
                  <input type="submit" value="Submit">
                </form>
              </div>
  
-            <!-- <a href="#">
-               <h2 class="view-all add-product"><i class="fas fa-plus"></i> add attendant</h2>
-            </a> -->
-            <!-- <div class="info-block">
-               <div class="info-block-header info-block-header4">
-                  <h2><i class="fas fa-people-carry"></i></h2>
-               </div>
-               <div class="info-block-content">
-                  <h3>number of staffs</h3>
-                  <p>12</p>
-               </div>
-               <div class="info-block-footer">
-                  <p><i class="fas fa-calendar-alt"></i> last employment date <span class="date">20/12/2018</span></p>
-               </div>
-            </div> -->
-            <!-- info-block -->
-            <!-- <div class="info-block ">
-               <div class="info-block-header info-block-header5">
-                  <h2><i class="fas fa-user-alt"></i></h2>
-               </div>
-               <div class="info-block-content">
-                  <h3>staffs on duty</h3>
-                  <p>8</p>
-               </div>
-               <div class="info-block-footer">
-                  <p><i class="far fa-clock"></i> last 24 hours</p>
-               </div>
-            </div> -->
-            <!-- info-block -->
-            <!-- <div class="info-block ">
-               <div class="info-block-header info-block-header6">
-                  <h2><i class="fas fa-user-alt"></i></h2>
-               </div>
-               <div class="info-block-content">
-                  <h3>staffs off duty</h3>
-                  <p>4</p>
-               </div>
-               <div class="info-block-footer">
-                  <p><i class="far fa-clock"></i> last 24 hours</p>
-               </div>
-            </div> -->
-            <!-- info-block -->
-         </div>
-         <!-- up-info-container -->
+           
 
          <h2 class="container-title">attendants info</h2>
          <input type="text" id="myInput" placeholder='Search for staff by name..'>
@@ -217,30 +174,7 @@
                   <td>12/09/2017</td>
                      <td><button class="delete">Delete</button><button class="edit">Edit</button></td>
                   </tr>
-                  <!-- <tr>
-                     <td>Atiku Alao</td>
-                     <td>07034546534</td>
-                     <td>atikualao@gmail.com</td>
-                     <td>12/09/2017</td>
-                     <td> 13000</td>
-                     <td><button class="delete">Delete</button><button class="edit">Edit</button></td>
-                  </tr> -->
-                  <!-- <tr>
-                     <td>Samuel Johnson</td>
-                     <td>07098231243</td>
-                     <td>daniel@gmail.com</td>
-                     <td>12/09/2018</td>
-                     <td> 3000</td>
-                     <td><button class="delete">Delete</button><button class="edit">Edit</button></td>
-                  </tr> -->
-                  <!-- <tr>
-                     <td>Samson Goddy</td>
-                     <td>09087654534</td>
-                     <td>samsongoddy@gmail.com</td>
-                     <td>12/09/2018</td>
-                     <td> 5000</td>
-                     <td><button class="delete">Delete</button><button class="edit">Edit</button></td>
-                  </tr> -->
+  
                </tbody>
             </table>
          </div>

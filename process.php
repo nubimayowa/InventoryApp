@@ -1,77 +1,33 @@
 <?php
-// $db_user = 'root';//or localhost
-// $db_pass = ''; // your db_name
-// $db_name = 'loginsystem'; // root by default for localhost 
-//  // by defualt empty for localhost
-
-// $db = new PDO("mysql:host=localhost; dbname=" . $db_name . ";charset=utf8", $db_user, $db_pass);
-// $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-
-
-
-$mysqli = new mysqli ('localhost', 'root', '', 'loginsystem',) or die (mysqli_error($mysqli));
-
-$product_name ="";
-$quantity ="";
-$category = "";
-$price ="";
-$date ="";
-
-
-
-
-
-if (isset($_POST['save'])){
-    $product_name = $_POST['product_name'];
-    $category = $_POST['category'];
-    $quantity= $_POST['quantity'];
-    $price= $_POST['price'];
-    $date= $_POST['date'];
-
+include('config.php');
+if(isset($_POST['save'])){
    
-
-    $mysqli ->query ("INSERT INTO addproduct (product_name, category, quantity, date, price) VALUES ('$product_name', '$category', 
-  '$quantity', '$date',$price')") 
+      $msg=insert_data($connection);
+      
+}
+// insert query
+function insert_data($connection){
    
-  or 
-  die($mysqli->error);
-  header("location: product_list.php");
-  alert("hhshsh");
-
+      $product_name= legal_input($_POST['product_name']);
+      $quantity legal_input($_POST['quantity']);
+      $category = legal_input($_POST['category']);
+      $price = legal_input($_POST['price']);
+      $date = legal_input($_POST['date']);
+      $query="INSERT INTO addproduct (product_name,quantity,category,price, date) VALUES ('$product_name','$quantity','$category','$price', '$date')";
+      $exec= mysqli_query($connection,$query);
+      if($exec){
+        $msg="Data was created sucessfully";
+        return $msg;
+      
+      }else{
+        $msg= "Error: " . $query . "<br>" . mysqli_error($connection);
+      }
 }
-
-
-if (isset($_GET['delete']))
-{
-  $product_id = $_GET["delete"];
-$mysqli ->query("DELETE FROM products WHERE product_id=$product_id") or  die($mysqli->error());
-
-
-header("location: product_list.php");
-
+// convert illegal input to legal input
+function legal_input($value) {
+  $value = trim($value);
+  $value = stripslashes($value);
+  $value = htmlspecialchars($value);
+  return $value;
 }
-
-if (isset($_GET["edit"])){
-  $product_id = $_GET["edit"];
-  $result = $mysqli-> query("SELECT * FROM  products WHERE product_id=$product_id")  or  die($mysqli->error());
-
-  if (count($result)== 1){
-
-    $row = $result->fetch_array();
-    $product_name = $row["product_name"];
-    $category = $row["category"];
-    $quantity = $row["quantity"];
-    $price = $row["price"];
-  } 
-}
-
-
-
-
-
-
-
-
-
-
 ?>

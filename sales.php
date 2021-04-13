@@ -81,30 +81,30 @@
             <div>
                <form >
                 
-                 <label for="fname">Full Name</label>
-                 <input type="text" id="fname" name="firstname" placeholder="Your name..">
-                 <label for="country">Product</label>
+               
+                 <label for="country">Attendant</label>
                  <select id="country" name="country">
-                   <option value="australia">Shoe</option>
-                   <option value="canada">Socks</option>
-                   <option value="usa">Top</option>
+                   <option value="australia">Nubi Mayowa</option>
+                   <option value="canada">Tamara Thompson</option>
                  </select>
-                 <label for="country">Price</label>
+                 <label for="country">Product Name</label>
                  <select id="country" name="country">
-                  <option value="australia">€10</option>
-                  <option value="canada">€20</option>
-                  <option value="usa">€30</option>
-                  <option value="usa">€40</option>
-                  <option value="usa">€50</option>
+                  <option value="australia">Nike Yeezy</option>
+                  <option value="canada">Nike Airforce</option>
                 </select>
-             
-              
+                <label for="country">Category</label>
+                 <select id="country" name="country">
+                  <option value="australia">Nike Yeezy</option>
+                  <option value="canada">Nike Airforce</option>
+                </select>
+                <label for="country">Quantity Sold</label>
+                <input type="text"  placeholder="Enter quantity sold..">
 
-                 <label for="lname">Designation</label>
-                 <input type="text" id="email" name="email" placeholder="Designation..">
-                 <label for="lname">Phone Number</label>
-                 <input type="text" id="email" name="email" placeholder="Phone Number..">
-             
+                <label for="country">Price</label>
+                <input type="text" placeholder="Enter price..">
+
+                 <label for="lname">Total Cost</label>
+                 <input type="text" placeholder="Total cost..">
                 
                
                  <input type="submit" value="Submit">
@@ -158,7 +158,7 @@
                   <tr>
                      <th>ATTENDANT NAME</th>
                      <th>PRODUCT NAME</th>
-                     <th>PRODUCT TYPE</th>
+                     <th>CATEGORY</th>
                      <th>QUANTITY</th>
                      <th>PRICE</th>
                      <th>PURCHASE DATE</th>
