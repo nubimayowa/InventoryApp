@@ -92,35 +92,35 @@ header("location: login.php");
          <!-- sidebar -->
       </div>
       <!-- End of left side -->
-      <div class="right">
+      <div class="right" style="padding-right: 70px;padding-left: 20px;">
          <h2 class="container-title"> Record sales</h2>
          <div class="up-info-container">
             <div>
                <form >
                 
                
-                 <label for="country">Attendant</label>
+                 <label for="country">Attendant *</label>
                  <select id="country" name="country">
                    <option value="australia">Nubi Mayowa</option>
                    <option value="canada">Tamara Thompson</option>
                  </select>
-                 <label for="country">Product Name</label>
+                 <label for="country">Product Name *</label>
                  <select id="country" name="country">
                   <option value="australia">Nike Yeezy</option>
                   <option value="canada">Nike Airforce</option>
                 </select>
-                <label for="country">Category</label>
+                <label for="country">Category *</label>
                  <select id="country" name="country">
                   <option value="australia">Nike Yeezy</option>
                   <option value="canada">Nike Airforce</option>
                 </select>
-                <label for="country">Quantity Sold</label>
+                <label for="country">Quantity Sold *</label>
                 <input type="text"  placeholder="Enter quantity sold..">
 
-                <label for="country">Price</label>
+                <label for="country">Price *</label>
                 <input type="text" placeholder="Enter price..">
 
-                 <label for="lname">Total Cost</label>
+                 <label for="lname">Total Cost *</label>
                  <input type="text" placeholder="Total cost..">
                 
                

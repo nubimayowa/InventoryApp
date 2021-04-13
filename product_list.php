@@ -162,7 +162,7 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
        
       </div>
       <!-- End of left side -->
-      <div class="right">
+      <div class="right" style="padding-right: 70px;padding-left: 20px;">
          <h2 class="container-title"> Add products</h2>
          <div class="up-info-container">
 
@@ -175,17 +175,17 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
                <input type="hidden" name= "product_id" required id="product_id" value="<?php echo $product_id ?>">
          
                
-                 <label >Product Name</label>
+                 <label >Product Name *</label>
                  <input type="text" name="product_name" id="product_name"  value="<?php echo $product_name; ?>"
                   placeholder="Product name..">
 
-                  <label for="quantity">Quantity</label>
+                  <label for="quantity">Quantity *</label>
                  <input type="text" name="quantity" value="<?php echo $quantity;?>"
                    placeholder="How many are you adding..">
                  
                 
 
-                   <label for="category">Category</label>
+                   <label for="category">Category *</label>
                  <input type="text" name="category" value="<?php echo $category;?>"
                    placeholder="Enter the category...">
 
@@ -193,10 +193,10 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
              
                 
 
-                 <label for="price">Price</label>
+                 <label for="price">Price *</label>
                  <input type="text" name="price"  value="<?php echo $price;?>"
                   placeholder="Enter the price">
-                  <label for="date">Purchase Date</label>
+                  <label for="date">Purchase Date *</label>
                  <input type="date"  name="date" id="date" value="<?php echo $date;?>">
                
                  <div>

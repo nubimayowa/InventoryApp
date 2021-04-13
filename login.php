@@ -57,10 +57,10 @@ if (isset($_SESSION['userlogin'])){
             $.ajax({
                 type: 'POST',
                 url: "jslogin.php",
-                data: {username: username, password: password},
+                data: {empId: username, password: password},
                 success: function(data){
                     alert(data);
-                    if ($.trim(data) === "1"){
+                    if ($.trim(data) === "Login successful, Redirecting..."){
                         setTimeout('window.location.href = "index.php"', 2000);
                         
                         
