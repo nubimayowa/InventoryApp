@@ -183,7 +183,7 @@ header("location:login.php");
                      <th>OPERATION</th>
                   </tr>
                </thead>
-               <tbody>
+               <tbody id="tbody">
                   <tr>
                   <td>J88642</td>
                      <td>Mayowa</td>
@@ -204,7 +204,7 @@ header("location:login.php");
 
    <script src="/js/main.js"></script>
    <script type="text/javascript"> 
-      (function async () { 
+      (async function () { 
          let css = document.createElement('link'); 
          css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; 
          css.rel = 'stylesheet'; css.type = 'text/css'; 
@@ -220,7 +220,7 @@ header("location:login.php");
                   mob: document.querySelector('[name="mob"]').value,
                   pass: document.querySelector('[name="pass"]').value,
                   email: document.querySelector('[name="email"]').value,
-                  doe: document.querySelector('[name="email"]').value
+                  doe: document.querySelector('[name="doe"]').value
 
                }
                const response = await fetch('jsattendant.php', {
@@ -229,6 +229,16 @@ header("location:login.php");
                })
 
                if(response.status = 200) {
+                  const attendants = await getAttendants()
+                  populateTBody(attendants)
+                  document.querySelector('[name="empid"]').value = ""
+                  document.querySelector('[name="staff_name"]').value = ""
+                  document.querySelector('[name="mob"]').value= ""
+                  document.querySelector('[name="pass"]').value= ""
+                  document.querySelector('[name="email"]').value= ""
+                  document.querySelector('[name="doe"]').value = ""
+
+               }
                   alert("Attended added successful")
                }
             } catch(err) {
@@ -236,9 +246,36 @@ header("location:login.php");
             }
          }
          const getAttendants = async () => {
+            const response = await fetch("getAllAttendants.php")
+            debugger
+            if(response.status === 200) {
+               return response.json()
+            } 
+         }
+         const populateTBody = (data =[]) => {
+            const tBody = data.map(element => {
+               return `<tr>
+               <td>${element.empid}</td>
+               <td>${element.staff_name}</td>
+               <td>${element.mob}</td>
+               <td>${element.email}</td>
+               <td>${element.doe}</td>
+               <td><button class="delete">Delete</button><button class="edit" >Edit</button></td>
+               </tr>`
+            });
+            document.querySelector('#tbody').innerHTML = tBody.join()
             
          }
+         const deleteAttendant = async (empid="") => {
+               const response = await fetch(`deleteattendant.php?empid=${empid}`, {
+                  method:'delete',
+               })
+         }
          attendantForm.addEventListener("submit", createAttendant)
+
+         const attendants = await getAttendants()
+         debugger
+         populateTBody(attendants)
       })();
 
    </script>
