@@ -13,16 +13,19 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 $data = json_decode(file_get_contents("php://input"));
 
 try{
-     $stmtselect = $db->prepare("delecte * FROM registration where empid");
-        $stmtselect-> execute();
-        $user =  $stmtselect->fetchAll(PDO::FETCH_ASSOC);
-    if($user){
-        header('HTTP/1.1 200 Success');
-        echo json_encode($user);
+    if($data->empid !== "") {
+        $stmtselect = $db->prepare("delete FROM registration where empid=?");
+           $result = $stmtselect-> execute([$data->empid]);
+        if($result){
+            header('HTTP/1.1 201 Success');
+            echo json_encode(array("msg" => "Delected successfully"));
+        } else {
+            header('HTTP/1.1 400 Error');
+            echo json_encode(array("msg" => "Error in deleting attendants"));
+        }
     } else {
-        $result = array("msg" => "Error in fetching attendants");
         header('HTTP/1.1 400 Error');
-        echo json_encode($result);
+        echo json_encode(array("msg" => "No employee id sent"));
     }
 
 }

@@ -204,6 +204,45 @@ header("location:login.php");
 
    <script src="/js/main.js"></script>
    <script type="text/javascript"> 
+         const deleteAttendant = async (empid="") => {
+               const conf = confirm("Are you sure you want to delete")
+               if(conf){
+                  const response = await fetch(`deleteattendant.php`, {
+                     method:'post',
+                     body: JSON.stringify({empid})
+                  })
+                  if(response.status === 201) {
+                  const attendants = await getAttendants()
+                  populateTBody(attendants)
+                     alert("Attendant Deleted Successfully")
+                  }
+               }
+         }
+         const getAttendants = async () => {
+            const response = await fetch("getAllAttendants.php")
+            //   debugger
+            if(response.status === 200) {
+               return response.json()
+            }
+         }
+
+         const populateTBody = (data =[]) => {
+            const tBody = data.map(element => {
+               return `<tr>
+               <td>${element.empid}</td>
+               <td>${element.staff_name}</td>
+               <td>${element.mob}</td>
+               <td>${element.email}</td>
+               <td>${element.doe}</td>
+               <td><button class="delete" onclick="deleteAttendant('${element.empid}')">
+                  Delete
+               </button>
+               <button class="edit">Edit</button></td>
+               </tr>`
+            });
+            document.querySelector('#tbody').innerHTML = tBody.join()
+            
+         }
       (async function () { 
          let css = document.createElement('link'); 
          css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; 
@@ -228,7 +267,7 @@ header("location:login.php");
                   body: JSON.stringify(data)
                })
 
-               if(response.status = 200) {
+               if(response.status = 201) {
                   const attendants = await getAttendants()
                   populateTBody(attendants)
                   document.querySelector('[name="empid"]').value = ""
@@ -244,36 +283,11 @@ header("location:login.php");
                console.log({err})
             }
          }
-         const getAttendants = async () => {
-            const response = await fetch("getAllAttendants.php")
-            debugger
-            if(response.status === 200) {
-               return response.json()
-            } 
-         }
-         const populateTBody = (data =[]) => {
-            const tBody = data.map(element => {
-               return `<tr>
-               <td>${element.empid}</td>
-               <td>${element.staff_name}</td>
-               <td>${element.mob}</td>
-               <td>${element.email}</td>
-               <td>${element.doe}</td>
-               <td><button class="delete">Delete</button><button class="edit" >Edit</button></td>
-               </tr>`
-            });
-            document.querySelector('#tbody').innerHTML = tBody.join()
-            
-         }
-         const deleteAttendant = async (empid="") => {
-               const response = await fetch(`deleteattendant.php?empid=${empid}`, {
-                  method:'delete',
-               })
-         }
+         
          attendantForm.addEventListener("submit", createAttendant)
 
          const attendants = await getAttendants()
-         debugger
+         // debugger
          populateTBody(attendants)
       })();
 
