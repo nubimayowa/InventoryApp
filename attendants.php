@@ -117,34 +117,35 @@
          <!-- sidebar -->
       </div>
       <!-- End of left side -->
-      <div class="right">
+      <div class="right" style="padding-right: 70px;padding-left: 20px;">
          <h2 class="container-title"> Create attendants</h2>
          <div class="up-info-container">
             <div>
-               <form >
+               <form class="attendant">
                 
-               <label for="Eid">Employment Id</label>
-                 <input type="text" name="empid"  placeholder="Enter Employment Id..">
+               <label for="Eid">Employment Id *</label>
+                 <input type="text" name="empid"  placeholder="Enter Employment Id.." required="true">
 
-                 <label for="lname">Staff Name</label>
-                 <input type="text" name="staff_name" placeholder="Enter Staff Name..">
+                 <label for="lname">Staff Name *</label>
+                 <input type="text" name="staff_name" placeholder="Enter Staff Name.." required="true">
                
                 
-                 <label for="mon">Mobile Number</label>
-                 <input type="tel" name="mob"   placeholder="Enter Mobile Number..">
+                 <label for="mon">Mobile Number *</label>
+                 <input type="tel" name="mob"   placeholder="Enter Mobile Number.." required="true">
 
-                 <label for="lname">Password</label>
-                 <input type="text" name="pass"  placeholder="Enter Password..">
+                 <label for="lname">Password *</label>
+                 <input type="text" name="pass"  placeholder="Enter Password.." required="true">
 
-                 <label for="email">Email Address</label>
-                 <input type="email" name="email" placeholder="Enter Email Address..">
+                 <label for="email">Email Address *</label>
+                 <input type="email" name="email" placeholder="Enter Email Address.." required="true">
                 
                 <!-- employmemt date -->
-                 <label for="Doe">Employment Date</label>
-                 <input type="date"  name="doe">
+                 <label for="Doe">Employment Date *</label>
+                 <input type="date"  name="doe" required="true">
 
                  <input type="submit" value="Submit">
                </form>
+             </div>
              </div>
  
            
@@ -185,7 +186,37 @@
 
 
    <script src="/js/main.js"></script>
-   <script type="text/javascript"> (function () { let css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+   <script type="text/javascript"> 
+      (function async () { 
+         let css = document.createElement('link'); 
+         css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; 
+         css.rel = 'stylesheet'; css.type = 'text/css'; 
+         document.getElementsByTagName('head')[0].appendChild(css);
+         // deb
+         const attendantForm = document.querySelector('.attendant')
+         attendantForm.addEventListener("submit", async (event) => {
+            event.preventDefault()
+            try {
+               const data = {
+                  empid: document.querySelector('[name="empid"]').value,
+                  staff_name: document.querySelector('[name="staff_name"]').value,
+                  mob: document.querySelector('[name="mob"]').value,
+                  pass: document.querySelector('[name="pass"]').value,
+                  email: document.querySelector('[name="email"]').value,
+                  doe: document.querySelector('[name="email"]').value
+
+               }
+               await fetch('jsattendant.php', {
+                  method:'post',
+                  body: JSON.stringify(data)
+               })
+            } catch(err) {
+               console.log({err})
+            }
+         })
+      })();
+
+   </script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <?php
-
+echo hash("SHA256", "admin@123");
 session_start();
 if (isset($_SESSION['userlogin'])){
     header("Location: index.php");
