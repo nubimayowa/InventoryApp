@@ -1,5 +1,5 @@
 <?php
-echo hash("SHA256", "admin@123");
+// echo hash("SHA256", "admin@123");
 session_start();
 if (isset($_SESSION['userlogin'])){
     header("Location: index.php");
@@ -26,7 +26,7 @@ if (isset($_SESSION['userlogin'])){
             <img src="./images/21.png" />
         </div>
         <form action="" class="form" method="post" >
-        <input type="text" placeholder="Username" id="username" name="username"  class="username"  autofocus="true"/>
+        <input type="text" placeholder="Employee ID" id="username" name="empId"  class="username"  autofocus="true"/>
             <input type="password" placeholder="Password"  id="password" name="password" class="password"  />
             <input type="submit" value="Login" id="login"  name="login"
                     class="login" />
