@@ -64,7 +64,6 @@ const populateTBody = (data = []) => {
     empid = "",
     staff_name = "",
     mob = "",
-    pass = "",
     email = "",
     doe = "",
   } = {}) => {
