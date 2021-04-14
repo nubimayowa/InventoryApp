@@ -153,8 +153,25 @@ header("location:login.php");
                  <label for="mon">Mobile Number *</label>
                  <input type="tel" name="mob"   placeholder="Enter Mobile Number.." required="true">
 
-                 <label for="lname">Password *</label>
-                 <input type="text" name="pass"  placeholder="Enter Password.." required="true">
+                 <label for="lname">Password <?php
+                 
+                 if(isset($_GET['edit'])) {
+                  echo "";
+                 }
+                  else {
+                     echo "*";
+                  }
+                 ?></label>
+                 <input type="text" name="pass"  placeholder="Enter Password.." 
+                 <?php
+                 if(isset($_GET['edit'])) {
+                  echo "";
+                 }
+                  else {
+                     echo 'required="true"';
+                  }
+                 ?>
+                 >
 
                  <label for="email">Email Address *</label>
                  <input type="email" name="email" placeholder="Enter Email Address.." required="true">
