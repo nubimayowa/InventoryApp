@@ -29,45 +29,7 @@ header("location:login.php");
   
 </head>
 <style>
-   input[type=text], select {
-     width: 100%;
-     padding: 10px 50px;
-     margin: 8px 0;
-     display: inline-block;
-     border: 1px solid #ccc;
-     border-radius: 4px;
-     box-sizing: border-box;
-   }
- 
-   input[type=tel]  , select {
-     width: 100%;
-     padding: 10px 50px;
-     margin: 8px 0;
-     display: inline-block;
-     border: 1px solid #ccc;
-     border-radius: 4px;
-     box-sizing: border-box;
-   }
-   input[type=date]  , select {
-     width: 100%;
-     padding: 10px 50px;
-     margin: 8px 0;
-     display: inline-block;
-     border: 1px solid #ccc;
-     border-radius: 4px;
-     box-sizing: border-box;
-   }
-   
-   input[type=email], select {
-     width: 100%;
-     padding: 10px 50px;
-     margin: 8px 0;
-     display: inline-block;
-     border: 1px solid #ccc;
-     border-radius: 4px;
-     box-sizing: border-box;
-   }
-   input[type=email], select {
+   input[type=text], select, input[type=tel], input[type=date], input[type=password], input[type=email]  {
      width: 100%;
      padding: 10px 50px;
      margin: 8px 0;
