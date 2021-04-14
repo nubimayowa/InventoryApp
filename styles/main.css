@@ -463,7 +463,7 @@ table th.r {
 	margin-top: 1em;
 }
 
-td button {
+td button, td a {
 	width: 80px;
 	height: 40px;
 	margin: 0.5em;
@@ -489,6 +489,7 @@ td button {
 	background: #b8d141;
 	color: #fefefe;
 	cursor: pointer;
+	padding: 10px;
 }
 
 .edit:hover {
