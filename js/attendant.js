@@ -71,7 +71,7 @@ const populateTBody = (data = []) => {
     formData.empid.value = empid;
     formData.staff_name.value = staff_name;
     formData.mob.value = mob;
-    formData.pass.value = pass;
+    formData.pass.value = "";
     formData.email.value = email;
     formData.doe.value = doe;
   };
