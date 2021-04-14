@@ -93,8 +93,17 @@ try{
                 $pass = $data->pass;
                 $mob = $data->mob;
                 $doe = $data->doe;
-                if($empid !== "" && $email !== "" && $pass !== "" && $mob !== "" && $doe !== "" && $staff_name !== "") {
+                if($empid !== "" && $email !== "" && $mob !== "" && $doe !== "" && $staff_name !== "") {
+                    $password = "";
+                    if($pass !== "" )
                     $password = hash("SHA256", $pass);
+                    else {
+                        $stmtselect2 = $db->prepare("select pass from registration where empid=?");
+                        $stmtselect2->execute([$empid]);
+                        $emp =  $stmtselect2->fetch(PDO::FETCH_ASSOC);
+                        $password = $emp['pass'];
+                    }
+
                     $sql = "update registration set email =?, staff_name =?, pass =?, mob=?, doe=? where empid=?";
                     $stmtselect = $db->prepare($sql);
                     $result = $stmtselect-> execute([$email, $staff_name, $password, $mob, $doe, $empid]);
@@ -104,12 +113,20 @@ try{
                     header('HTTP/1.1 201 Update');
                     echo json_encode($user);
                 } else {
-                    $result = array("msg" => "Error in saving");
                     header('HTTP/1.1 400 Error');
-                    echo json_encode($result);
+                    echo json_encode(array("msg" => "Error in saving"));
                 }
+            } else {
+                header('HTTP/1.1 400 Error');
+                echo json_encode(array("msg" => "No attendant was selected"));
             }
-        }
+        } else {
+            header('HTTP/1.1 400 Error');
+            echo json_encode(array("msg" => "No attendant was selected"));
+        } 
+    } else {
+        header('HTTP/1.1 400 Error');
+        echo json_encode(array("msg" => "Nothing was sent"));
     }
 }
 catch(Exception $ex){
