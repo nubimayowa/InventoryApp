@@ -162,7 +162,7 @@ header("location:login.php");
                      echo "*";
                   }
                  ?></label>
-                 <input type="text" name="pass"  placeholder="Enter Password.." 
+                 <input type="password" name="pass"  placeholder="Enter Password.." 
                  <?php
                  if(isset($_GET['edit'])) {
                   echo "";
