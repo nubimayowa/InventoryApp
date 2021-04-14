@@ -67,7 +67,7 @@ header("location:login.php");
      border-radius: 4px;
      box-sizing: border-box;
    }
-   input[type=email], select {
+   input[type=password], select {
      width: 100%;
      padding: 10px 50px;
      margin: 8px 0;
