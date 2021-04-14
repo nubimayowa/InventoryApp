@@ -39,7 +39,7 @@ try{
    
         if(isset($_GET['empid'])){
            if( $_GET['empid'] !="") {
-                $stmtselect = $db->prepare("SELECT * FROM registration where empid=?");
+                $stmtselect = $db->prepare("SELECT empid, email, mob, doe, staff_name, id FROM registration where empid=?");
                     $stmtselect-> execute([$_GET['empid']]);
                     $user =  $stmtselect->fetch(PDO::FETCH_ASSOC);
                 if($user){
@@ -55,7 +55,7 @@ try{
             }
         }
         else{
-            $stmtselect = $db->prepare("SELECT * FROM registration");
+            $stmtselect = $db->prepare("SELECT empid, email, mob, doe, staff_name, id FROM registration");
                 $stmtselect-> execute();
                 $user =  $stmtselect->fetchAll(PDO::FETCH_ASSOC);
             if($user){
