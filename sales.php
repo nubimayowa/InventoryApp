@@ -16,9 +16,9 @@ header("location: login.php");
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-<head>
+<head lang="en">
    <meta charset="utf-8" />
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <title>Sales Info</title>
@@ -26,9 +26,10 @@ header("location: login.php");
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,500' rel='stylesheet' type='text/css'>
    <link rel="stylesheet" media="screen" href="./styles/main.css" />
+   <title>Sales</title>
 </head>
 <style>
-   input[type=text], select {
+   input[type=text], select, input[type=date] {
      width: 100%;
      padding: 10px 50px;
      margin: 8px 0;
@@ -58,6 +59,16 @@ header("location: login.php");
    </style>
 
 <body>
+<?php require_once 'salesprocess.php'; ?>
+
+<?php
+$mysqli = new mysqli ('localhost', 'root', '', 'loginsystem',) or die (mysqli_error($mysqli));
+$result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
+$results = $mysqli->query ("SELECT * FROM  registration") or die ($mysqli->error);
+$resultss = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
+$res = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
+$sale = $mysqli->query ("SELECT * FROM  sales") or die ($mysqli->error);
+?> 
    <div class="wrapper">
       <div class="left">
          <div id="sidebar" class="active">
@@ -96,35 +107,75 @@ header("location: login.php");
          <h2 class="container-title"> Record sales</h2>
          <div class="up-info-container">
             <div>
-               <form >
-                
+               <form  action="salesprocess.php" method="POST" >
+               <input type="hidden" name= "sales_id" required="true" id="sales_id" value="<?php echo $sales_id ?>">
                
-                 <label for="country">Attendant *</label>
-                 <select id="country" name="country">
-                   <option value="australia">Nubi Mayowa</option>
-                   <option value="canada">Tamara Thompson</option>
-                 </select>
-                 <label for="country">Product Name *</label>
-                 <select id="country" name="country">
-                  <option value="australia">Nike Yeezy</option>
-                  <option value="canada">Nike Airforce</option>
-                </select>
-                <label for="country">Category *</label>
-                 <select id="country" name="country">
-                  <option value="australia">Nike Yeezy</option>
-                  <option value="canada">Nike Airforce</option>
-                </select>
-                <label for="country">Quantity Sold *</label>
-                <input type="text"  placeholder="Enter quantity sold..">
+                  <label for="country">Attendant *</label>
+                 <select  name="staff_name" value="<?php echo $staff_name ?>">
+                 <?php
+                 while ($rows =$results-> fetch_assoc()){
+                    $staff_name =$rows["staff_name"];
+                    echo "<option value='$staff_name'> $staff_name</option>";
 
-                <label for="country">Price *</label>
-                <input type="text" placeholder="Enter price..">
+                 }
+                 ?>
+                 </select> 
+                 <label for="product_name">Product Name *</label>
+                 <select   name="product_name" value="<?php echo $product_name ?>" >
+                 <?php
+                 while ($rows =$result-> fetch_assoc()){
+                    $product_name =$rows["product_name"];
+                    echo "<option value='$product_name'> $product_name</option>";
+
+                 }
+                 ?>
+                 </select>
+                 
+             
+                <label for="category">Category *</label>
+                <select name="category"  value="<?php echo $category ?>">
+                 <?php
+                 while ($rows =$resultss-> fetch_assoc()){
+                    $category =$rows["category"];
+                    echo "<option value='$category'> $category</option>";
+
+                 }
+                 ?>
+                 </select>
+                <label for="quantity">Quantity Sold *</label>
+                <input type="text" name="quantity"  value="<?php echo $quantity ?>"  placeholder="Enter quantity sold.." required="true">
+
+                
+                 
+                <label for="price">Price *</label>
+                <select  name="price"  value="<?php echo $price ?>"  >
+                 <?php
+                 while ($rows =$res-> fetch_assoc()){
+                    $price =$rows["price"];
+                  //   echo "<option value> please select</option>"
+                  echo "<option value='$price'> $price</option>";
+
+                 }
+                 ?>
+                 </select>
+                 <label for="date">Record Date *</label>
+                 <input type="date"  name="date" value="<?php echo $date ?>"  required="true" >
+               
 
                  <label for="lname">Total Cost *</label>
-                 <input type="text" placeholder="Total cost..">
+                 <input type="text" name="total" value="<?php echo $total ?>"  placeholder="Total cost.." required="true">
                 
                
-                 <input type="submit" value="Submit">
+                 <div>
+               <?php
+               if ($update == true):
+                  ?>
+                   <input type="submit" name="update" value="Update">
+                   <?php else: ?>
+
+                 <input type="submit" name="save" value="Submit">
+                 <?php endif; ?>
+                   </div>
                </form>
              </div>
          
@@ -142,59 +193,45 @@ header("location: login.php");
                      <th>CATEGORY</th>
                      <th>QUANTITY</th>
                      <th>PRICE</th>
-                     <th>PURCHASE DATE</th>
+                     <th>Date Added</th>
+                     <th>Total</th>
 
                      <th>OPERATION</th>
                   </tr>
                </thead>
+               <?php
+               while ($row= $sale-> fetch_assoc()):?>
                <tbody>
                   <tr>
-                     <td>Segun Arinze</td>
-                     <td>SHOE</td>
-                     <td>Wears</td>
-                     <td>9</td>
-                     <td>120</td>
-                     <td>12/09/2018</td>
-
-                     <td><button class="delete">Delete</button><button class="edit">Edit</button></td>
+                     <td><?php echo $row ["staff_name"];?></td>
+                     <td><?php echo $row ["product_name"];?></td>
+                     <td><?php echo $row ["category"];?></td>
+                     <td><?php echo $row ["quantity"];?></td>
+                     <td><?php echo $row ["price"];?></td>
+                     <td><?php echo $row ["date"];?></td>
+                     <td><?php echo $row ["total"];?></td>
+                     <td>
+                      <a href="sales.php?edit=<?php echo $row['sales_id'];?>" class="edit">Edit</a>
+                      <a href="salesprocess.php?delete=<?php echo $row['sales_id'];?>"class="delete">Delete</a>
+                      </td>
                   </tr>
-                  <tr>
-                     <td>Peter Obi</td>
-                     <td>SHIRT</td>
-                     <td>Wears</td>
-                     <td>4</td>
-                     <td>80</td>
-                     <td>20/02/2018</td>
-
-                     <td><button class="delete">Delete</button><button class="edit">Edit</button></td>
-                  </tr>
-                  <tr>
-                     <td>Buhari Muhammad</td>
-                     <td>TIE</td>
-                     <td>Wears</td>
-                     <td>2</td>
-                     <td>55</td>
-                     <td>12/01/2018</td>
-
-                     <td><button class="delete">Delete</button><button class="edit">Edit</button></td>
-                  </tr>
-                  <tr>
-                     <td>Olusegun Obasanjo</td>
-                     <td>SOCKS</td>
-                     <td>Wears</td>
-                     <td>7</td>
-                     <td>40</td>
-                     <td>02/12/2018</td>
-
-                     <td><button class="delete">Delete</button><button class="edit">Edit</button></td>
-                  </tr>
+                  <?php endwhile;?>
                </tbody>
             </table>
          </div>
+
+         <?php
+
+         function pre_r ($array){
+            echo '<pre>';
+            print_r($array);
+            echo "</pre>";
+         }
+         ?>
       </div>
-  
+      <!-- End of right side -->
    </div>
-  
+   <!-- En
 
 
    <script src="/js/main.js"></script>

@@ -28,6 +28,7 @@ const getAttendants = async () => {
   }
 };
 
+
 const populateTBody = (data = []) => {
   const tBody = data.map((element) => {
     return `<tr>
@@ -56,6 +57,7 @@ const populateTBody = (data = []) => {
   const getattendantbyempid = async (empid = "") => {
     debugger;
     const response = await fetch(`jsattendant.php?empid=${empid}`);
+    //const response = await fetch(`index.php?empid=${empid}`);
     if (response.status === 200) {
       return response.json();
     } else throw response.json();
@@ -121,4 +123,5 @@ const populateTBody = (data = []) => {
   const attendants = await getAttendants();
   // debugger
   populateTBody(attendants);
+ 
 })();

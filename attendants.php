@@ -16,7 +16,7 @@ header("location:login.php");
 
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 
 <head>
@@ -27,6 +27,7 @@ header("location:login.php");
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,500' rel='stylesheet' type='text/css'>
    <link rel="stylesheet" media="screen" href="./styles/main.css" />
+   <title>Attendants</title>
   
 </head>
 <style>
@@ -156,7 +157,7 @@ header("location:login.php");
            
 
          <h2 class="container-title">attendants info</h2>
-         <input type="text" id="myInput" placeholder='Search for staff by name..'>
+         <input type="text" id="myInput" placeholder='Search for staff by Employeement Id..'>
          <div class="down-info-container">
             <table class="table4 searchTable">
                <thead>

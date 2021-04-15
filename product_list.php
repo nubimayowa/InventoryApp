@@ -17,7 +17,7 @@ header("location: login.php");
 
 
 <!DOCTYPE html>
-<html>
+<html  lang="en">
 
 <head>
    <meta charset="utf-8" />
@@ -28,66 +28,18 @@ header("location: login.php");
    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,500' rel='stylesheet' type='text/css'>
    <link rel="stylesheet" media="screen" href="./styles/main.css" />
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	
+	<title>Product Listing</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 	<script src="ajax.js"></script>
    <script src="/js/main.js"></script>
    <script>
 
-function ValidationForm() {
-  let product_name = document.forms["RegForm"]["product_name"];
-  let quantity = document.forms["RegForm"]["quantity"];
-  let category = document.forms["RegForm"]["category"];
-  let price = document.forms["RegForm"]["price"];
-  let date = document.forms["RegForm"]["date"];
-
-  if (product_name.value == "") {
-    alert("Please enter a product name.");
-    product_name.focus();
-    return false;
-  }
-  
-  if (quantity.value == "") {
-    alert("Please enter quantity.");
-    quantity.focus();
-    return false;
-  }
-  if (category.value == "") {
-    alert("Please enter a category type");
-    category.focus();
-    return false;
-  }
-  if (price.value == "") {
-    alert("Please enter the price");
-    price.focus();
-    return false;
-  }
-  if (date.value == "") {
-    alert("Please select the date");
-    date.focus();
-    return false;
-  }
-  alert("Product successfully created!");
-  return true;
- 
-}
-
 </script>
 </head>
 
 <style>
-
-   input[type=text], select {
-     width: 100%;
-     padding: 10px 50px;
-     margin: 8px 0;
-     display: inline-block;
-     border: 1px solid #ccc;
-     border-radius: 4px;
-     box-sizing: border-box;
-   }
-   input[type=date], select {
+   input[type=text], select, input[type=tel], input[type=date], input[type=password], input[type=email]  {
      width: 100%;
      padding: 10px 50px;
      margin: 8px 0;
@@ -97,7 +49,10 @@ function ValidationForm() {
      box-sizing: border-box;
    }
    
-   input[type=submit] {
+   
+   
+   
+   input[type=submit], a.cancel {
      width: 50%;
      background-color: #000000;
      color: white;
@@ -107,21 +62,20 @@ function ValidationForm() {
      border-radius: 4px;
      cursor: pointer;
    }
+
+   a.cancel {
+     background-color: red;
+   }
    
    input[type=submit]:hover {
      background-color: #45a049;
    }
-
-   .col-50 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-}
+   
   
    </style>
 
 <body>      
-<?php require_once 'productprocess.php'; ?>
+ <?php require_once 'productprocess.php'; ?>
 
 <?php
 $mysqli = new mysqli ('localhost', 'root', '', 'loginsystem',) or die (mysqli_error($mysqli));
@@ -137,7 +91,7 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
                <span></span>
             </div>
            
-            <h1 id="logo">shoppy</h1>
+            <h1 id="logo">Lifted Store</h1>
             <ul>
                <a href="index.php">
                   <li><i class="fas fa-tachometer-alt"></i> Dashboard</li>
@@ -169,24 +123,24 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
             <div>
           
             
-            <form name="RegForm" action="productprocess.php" method="POST" onsubmit="return ValidationForm()" >
+            <form name="RegForm" action="productprocess.php" method="POST" " >
            
               
-               <input type="hidden" name= "product_id" required id="product_id" value="<?php echo $product_id ?>">
+               <input type="hidden" name= "product_id" required="true" id="product_id" value="<?php echo $product_id ?>">
          
                
                  <label >Product Name *</label>
-                 <input type="text" name="product_name" id="product_name"  value="<?php echo $product_name; ?>"
+                 <input type="text" name="product_name" required="true" value="<?php echo $product_name; ?>"
                   placeholder="Product name..">
 
                   <label for="quantity">Quantity *</label>
-                 <input type="text" name="quantity" value="<?php echo $quantity;?>"
+                 <input type="text" name="quantity" required="true" value="<?php echo $quantity;?>"
                    placeholder="How many are you adding..">
                  
                 
 
                    <label for="category">Category *</label>
-                 <input type="text" name="category" value="<?php echo $category;?>"
+                 <input type="text" name="category" required="true" value="<?php echo $category;?>"
                    placeholder="Enter the category...">
 
                  
@@ -194,10 +148,10 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
                 
 
                  <label for="price">Price *</label>
-                 <input type="text" name="price"  value="<?php echo $price;?>"
+                 <input type="text" name="price" required="true"  value="<?php echo $price;?>"
                   placeholder="Enter the price">
                   <label for="date">Purchase Date *</label>
-                 <input type="date"  name="date" id="date" value="<?php echo $date;?>">
+                 <input type="date"  name="date" required="true" value="<?php echo $date;?>">
                
                  <div>
                <?php

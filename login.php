@@ -7,7 +7,7 @@ if (isset($_SESSION['userlogin'])){
 
 ?>
 <!DOCTYPE html>
-<html>
+<html  lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -17,6 +17,7 @@ if (isset($_SESSION['userlogin'])){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href="./styles/main.css"  rel="stylesheet" media="screen" />
+    <title>Login Page</title>
 </head>
 
 <body>

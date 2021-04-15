@@ -95,8 +95,10 @@ if (isset($_POST['update'])){
 
 
   header("location: product_list.php");
+  echo json_encode(array("msg" => "Attendant does not exist"));
  }
 
+ 
 ?>
 
 
