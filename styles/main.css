@@ -145,7 +145,6 @@ body {
 	padding-bottom: 2em;
 	justify-content: space-between;
 	border-bottom: 1px solid #ccc;
-	position: relative;
 }
 
  .container-title {
@@ -199,11 +198,12 @@ table {
 	overflow: hidden;
 	width: 100%;
 	margin: 0 auto;
-	position: relative;
 }
-table * {
+
+/* table * {
 	position: relative;
-}
+} */
+
 table td,
 table th {
 	padding-left: 8px;

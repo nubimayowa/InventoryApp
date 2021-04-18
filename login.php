@@ -42,7 +42,7 @@ if (isset($_SESSION['userlogin'])){
   crossorigin="anonymous"></script>
     <script>
     $(function(){
-        $("#login").click(function(e){
+        $("#login").click(async function(e){
           
 
             var valid= this.form.checkValidity();
@@ -54,26 +54,20 @@ if (isset($_SESSION['userlogin'])){
             }
 
             e.preventDefault();
-
-            $.ajax({
-                type: 'POST',
-                url: "jslogin.php",
-                data: {empId: username, password: password},
-                success: function(data){
-                    alert(data);
-                    if ($.trim(data) === "Login successful, Redirecting..."){
-                        setTimeout('window.location.href = "index.php"', 2000);
-                        
-                        
-                    }
-                },
-
-                error: function(data){
-                    alert("An error occured");
-                }
+            const response = await fetch('jslogin.php', {
+                method: 'POST',
+                body: JSON.stringify({empId: username, password: password})
             })
-
-        
+            alert('Logging in...')
+            if(+response.status === 200) {
+                setTimeout(() =>  window.location.href="index.php", 2000)
+            } else if(+response.status === 400) {
+                const error = await response.json();
+                debugger
+                alert(error.msg)
+            } else {
+                alert("An error occurred!")
+            }
         });
     });
 
