@@ -12,7 +12,7 @@ if (isset($_SESSION['userlogin'])){
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Store Manager</title>
+   
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
@@ -21,13 +21,13 @@ if (isset($_SESSION['userlogin'])){
 </head>
 
 <body>
-  <div class="attendant-block admin-box">
+  <div class="attendant-block ">
   
         <div class="logo">
-            <img src="./images/21.png" />
+            <img alt="Admin profile icon" src="./images/21.png" />
         </div>
-        <form action="" class="form" method="post" >
-        <input type="text" placeholder="Employee ID" id="username" name="empId"  class="username"  autofocus="true"/>
+        <form  class="form" method="post" >
+        <input type="text" placeholder="Employee ID" id="username" name="empId" class="username"  />
             <input type="password" placeholder="Password"  id="password" name="password" class="password"  />
             <input type="submit" value="Login" id="login"  name="login"
                     class="login" />

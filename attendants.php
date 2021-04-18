@@ -22,14 +22,13 @@ header("location:login.php");
 <head>
    <meta charset="utf-8" />
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <title>Product Info</title>
+   
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,500' rel='stylesheet' type='text/css'>
    <link rel="stylesheet" media="screen" href="./styles/main.css" />
    <title>Attendants</title>
-  
-</head>
+
 <style>
    input[type=text], select, input[type=tel], input[type=date], input[type=password], input[type=email]  {
      width: 100%;
@@ -65,6 +64,7 @@ header("location:login.php");
    
   
    </style>
+   </head>
 
 <body>
    <div class="wrapper">
@@ -78,46 +78,45 @@ header("location:login.php");
             <!-- toggle-button -->
             <h1 id="logo">Lifted Store</h1>
             <ul>
-               <a href="index.php">
-                  <li><i class="fas fa-tachometer-alt"></i> Dashboard</li>
-               </a>
-               <a class="arrow-container" href="#">
-                  <div class="arrow-left"></div>
-                  <li><i class="fas fa-user-alt"></i> attendants</li>
-               </a>
-               <a href="product_list.php">
-                  <li><i class="fas fa-people-carry"></i> products</li>
-               </a>
+               
+                  <li><i class="fas fa-tachometer-alt"></i> <a href="index.php"> Dashboard </a></li>
+              
+              
+                  <li><i class="fas fa-user-alt"></i> <a class="arrow-container"> attendants </a> </li>
+              
             
-               <a href="sales.php">
-                  <li><i class="fas fa-dollar-sign"></i> sales</li>
-               </a>
-               <a href="attendants.php?logout=true">
-                  <li><i class="fas fa-sign-out-alt"></i> logout</li>
-               </a>
+                  <li><i class="fas fa-people-carry"></i>    <a href="product_list.php"> products </a>
+            </li>
+               
+               
+                  <li><i class="fas fa-dollar-sign"></i> <a href="sales.php"> sales</a></li>
+            
+              
+                  <li><i class="fas fa-sign-out-alt"></i>  <a href="attendants.php?logout=true"> logout  </a></li>
+              
 
             </ul>
          </div>
          <!-- sidebar -->
       </div>
       <!-- End of left side -->
-      <div class="right" ">
+      <div class="right">
          <h2 class="container-title"> Create attendants</h2>
          <div class="up-info-container">
             <div>
                <form class="attendant">
                 
-               <label for="Eid">Employment Id *</label>
-                 <input type="text" name="empid"  placeholder="Enter Employment Id.." required="true">
+               <label>Employment Id *</label>
+                 <input type="text" name="empid"  placeholder="Enter Employment Id.." required="required">
 
-                 <label for="lname">Staff Name *</label>
-                 <input type="text" name="staff_name" placeholder="Enter Staff Name.." required="true">
+                 <label >Staff Name *</label>
+                 <input type="text" name="staff_name" placeholder="Enter Staff Name.." required="required">
                
                 
-                 <label for="mon">Mobile Number *</label>
-                 <input type="tel" name="mob"   placeholder="Enter Mobile Number.." required="true">
+                 <label >Mobile Number *</label>
+                 <input type="tel" name="mob"   placeholder="Enter Mobile Number.." required="required">
 
-                 <label for="lname">Password <?php
+                 <label >Password <?php
                  
                  if(isset($_GET['edit'])) {
                   echo "";
@@ -132,17 +131,17 @@ header("location:login.php");
                   echo "";
                  }
                   else {
-                     echo 'required="true"';
+                     echo 'required="required"';
                   }
                  ?>
                  >
 
-                 <label for="email">Email Address *</label>
-                 <input type="email" name="email" placeholder="Enter Email Address.." required="true">
+                 <label>Email Address *</label>
+                 <input type="email" name="email" placeholder="Enter Email Address.." required="required">
                 
                 <!-- employmemt date -->
-                 <label for="Doe">Employment Date *</label>
-                 <input type="date"  name="doe" required="true">
+                 <label>Employment Date *</label>
+                 <input type="date"  name="doe" required="required">
 
                  <input type="submit" value="Submit">
                  <?php 
@@ -157,7 +156,7 @@ header("location:login.php");
            
 
          <h2 class="container-title">attendants info</h2>
-         <input type="text" id="myInput" placeholder='Search for staff by Employeement Id..'>
+         <input type="text" id="myInput" placeholder='Search for staff by Employment Id..'>
          <div class="down-info-container">
             <table class="table4 searchTable">
                <thead>
@@ -181,13 +180,11 @@ header("location:login.php");
             </table>
          </div>
       </div>
-      <!-- End of right side -->
+   
    </div>
-   <!-- End of wrapper -->
-
 
    <script src="./js/main.js"></script>
-   <script type="text/javascript" src="./js/attendant.js"></script>
+   <script  src="./js/attendant.js"></script>
 </body>
 
 </html>

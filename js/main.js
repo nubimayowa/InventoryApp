@@ -2,16 +2,8 @@ const togggleButton = document.querySelector(".toggle-btn");
 const sidebar = document.getElementById("sidebar");
 let input, filter, table, tr, td, i;
 input = document.getElementById("myInput");
+input = document.getElementById("myInputs");
 
-// $(".admin-box").hide();
-// $("#show").click(function() {
-// 	$(".attendant-box").hide();
-// 	$(".admin-box").fadeIn(200);
-// });
-// $("#hide").click(function() {
-// 	$(".attendant-box").fadeIn(200);
-// 	$(".admin-box").hide();
-// });
 
 toggleSidebar = () => {
 	sidebar.classList.toggle("active");

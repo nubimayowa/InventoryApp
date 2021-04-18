@@ -22,7 +22,6 @@ header("location: login.php");
 <head>
    <meta charset="utf-8" />
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <title>Product Info</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,500' rel='stylesheet' type='text/css'>
@@ -36,7 +35,7 @@ header("location: login.php");
    <script>
 
 </script>
-</head>
+
 
 <style>
    input[type=text], select, input[type=tel], input[type=date], input[type=password], input[type=email]  {
@@ -73,6 +72,7 @@ header("location: login.php");
    
   
    </style>
+   </head>
 
 <body>      
  <?php require_once 'productprocess.php'; ?>
@@ -93,23 +93,19 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
            
             <h1 id="logo">Lifted Store</h1>
             <ul>
-               <a href="index.php">
-                  <li><i class="fas fa-tachometer-alt"></i> Dashboard</li>
-               </a>
-               <a href="attendants.php">
-                  <li><i class="fas fa-user-alt"></i> attendants</li>
-               </a>
-               <a class="arrow-container" href="#">
-                  <div class="arrow-left"></div>
-                  <li><i class="fas fa-people-carry"></i> products</li>
-               </a>
              
-               <a href="sales.php">
-                  <li><i class="fas fa-dollar-sign"></i> sales</li>
-               </a>
-               <a href="product_list.php?logout=true">
-                  <li><i class="fas fa-sign-out-alt"></i> logout</li>
-               </a>
+                  <li><i class="fas fa-tachometer-alt"></i>   <a href="index.php"> Dashboard  </a></li>
+              
+           
+                  <li><i class="fas fa-user-alt"></i>     <a href="attendants.php"> attendants  </a></li>
+    
+                  <li><i class="fas fa-people-carry"></i>   <a class="arrow-container" > products   </a></li>
+
+             
+                  <li><i class="fas fa-dollar-sign"></i>   <a href="sales.php"> sales   </a></li>
+         
+                  <li><i class="fas fa-sign-out-alt"></i> <a href="product_list.php?logout=true"> logout </a></li>
+              
 
             </ul>
          </div>
@@ -123,35 +119,35 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
             <div>
           
             
-            <form name="RegForm" action="productprocess.php" method="POST" " >
+            <form name="RegForm" action="productprocess.php" method="POST">
            
               
-               <input type="hidden" name= "product_id" required="true" id="product_id" value="<?php echo $product_id ?>">
+               <input type="hidden" name= "product_id"  id="product_id" value="<?php echo $product_id ?>">
          
                
                  <label >Product Name *</label>
-                 <input type="text" name="product_name" required="true" value="<?php echo $product_name; ?>"
+                 <input type="text" name="product_name" required="required" value="<?php echo $product_name; ?>"
                   placeholder="Product name..">
 
-                  <label for="quantity">Quantity *</label>
-                 <input type="text" name="quantity" required="true" value="<?php echo $quantity;?>"
+                  <label>Quantity *</label>
+                 <input type="text" name="quantity" required="required" value="<?php echo $quantity;?>"
                    placeholder="How many are you adding..">
                  
                 
 
-                   <label for="category">Category *</label>
-                 <input type="text" name="category" required="true" value="<?php echo $category;?>"
+                   <label >Category *</label>
+                 <input type="text" name="category" required="required" value="<?php echo $category;?>"
                    placeholder="Enter the category...">
 
                  
              
                 
 
-                 <label for="price">Price *</label>
-                 <input type="text" name="price" required="true"  value="<?php echo $price;?>"
+                 <label >Price *</label>
+                 <input type="text" name="price" required="required"  value="<?php echo $price;?>"
                   placeholder="Enter the price">
-                  <label for="date">Purchase Date *</label>
-                 <input type="date"  name="date" required="true" value="<?php echo $date;?>">
+                  <label >Purchase Date *</label>
+                 <input type="date"  name="date" required="required" value="<?php echo $date;?>">
                
                  <div>
                <?php
@@ -195,7 +191,7 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
                      <td><?php echo $row ["date"];?></td>
                      <td>
                       <a href="product_list.php?edit=<?php echo $row['product_id'];?>" class="edit">Edit</a>
-                      <a href="productprocess.php?delete=<?php echo $row['product_id'];?>"class="delete">Delete</a>
+                      <a href="productprocess.php?delete=<?php echo $row['product_id'];?>" class="delete">Delete</a>
                       </td>
                   </tr>
                   <?php endwhile;?>
@@ -212,17 +208,14 @@ $result = $mysqli->query ("SELECT * FROM  products") or die ($mysqli->error);
          }
          ?>
       </div>
-      <!-- End of right side -->
+   
    </div>
-   <!-- End of wrapper -->
 
 
    <script src="/js/main.js"></script>
   
-</script>
 
-
-   <script type="text/javascript"> (function () { let css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+   <script > (function () { let css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
 
 
 </body>

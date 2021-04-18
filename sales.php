@@ -15,19 +15,21 @@ header("location: login.php");
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
-<head lang="en">
+
+<head>
    <meta charset="utf-8" />
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <title>Sales Info</title>
+   
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,500' rel='stylesheet' type='text/css'>
    <link rel="stylesheet" media="screen" href="./styles/main.css" />
-   <title>Sales</title>
-</head>
+   <title>Sales Information</title>
+
 <style>
    input[type=text], select, input[type=date] {
      width: 100%;
@@ -57,6 +59,7 @@ header("location: login.php");
    
   
    </style>
+   </head>
 
 <body>
 <?php require_once 'salesprocess.php'; ?>
@@ -80,25 +83,23 @@ $sale = $mysqli->query ("SELECT * FROM  sales") or die ($mysqli->error);
          
             <h1 id="logo">Lifted Store</h1>
             <ul>
-               <a href="index.php">
-                  <li><i class="fas fa-tachometer-alt"></i> Dashboard</li>
-               </a>
-               <a href="attendants.php">
-                  <li><i class="fas fa-user-alt"></i> attendants</li>
-               </a>
-               <a href="product_list.php">
-                  <li><i class="fas fa-people-carry"></i> products</li>
-               </a>
+             
+            <li><i class="fas fa-tachometer-alt"></i> <a href="index.php"> Dashboard </a></li>
+             
+                  <li><i class="fas fa-user-alt"></i> 
+               <a href="attendants.php">attendants    </a></li>
+            
+                  <li><i class="fas fa-people-carry"></i>
+               <a href="product_list.php"> products   </a></li>
+             
                
-               <a class="arrow-container" href="#">
-                  <div class="arrow-left"></div>
-                  <li><i class="fas fa-dollar-sign"></i> sales</li>
-               </a>
-               <a href="sales.php?logout=true">
-                  <li><i class="fas fa-sign-out-alt"></i> logout</li>
-               </a>
-
-            </ul>
+              
+                  <li><i class="fas fa-dollar-sign"></i> <a class="arrow-container"> sales</a></li>
+            
+              
+                  <li><i class="fas fa-sign-out-alt"></i> <a href="sales.php?logout=true"> logout   </a></li>
+            
+                  </ul>
          </div>
          <!-- sidebar -->
       </div>
@@ -108,9 +109,9 @@ $sale = $mysqli->query ("SELECT * FROM  sales") or die ($mysqli->error);
          <div class="up-info-container">
             <div>
                <form  action="salesprocess.php" method="POST" >
-               <input type="hidden" name= "sales_id" required="true" id="sales_id" value="<?php echo $sales_id ?>">
+               <input type="hidden" name= "sales_id"  id="sales_id" value="<?php echo $sales_id ?>">
                
-                  <label for="country">Attendant *</label>
+                  <label >Attendant *</label>
                  <select  name="staff_name" value="<?php echo $staff_name ?>">
                  <?php
                  while ($rows =$results-> fetch_assoc()){
@@ -120,7 +121,7 @@ $sale = $mysqli->query ("SELECT * FROM  sales") or die ($mysqli->error);
                  }
                  ?>
                  </select> 
-                 <label for="product_name">Product Name *</label>
+                 <label >Product Name *</label>
                  <select   name="product_name" value="<?php echo $product_name ?>" >
                  <?php
                  while ($rows =$result-> fetch_assoc()){
@@ -132,7 +133,7 @@ $sale = $mysqli->query ("SELECT * FROM  sales") or die ($mysqli->error);
                  </select>
                  
              
-                <label for="category">Category *</label>
+                <label>Category *</label>
                 <select name="category"  value="<?php echo $category ?>">
                  <?php
                  while ($rows =$resultss-> fetch_assoc()){
@@ -142,12 +143,12 @@ $sale = $mysqli->query ("SELECT * FROM  sales") or die ($mysqli->error);
                  }
                  ?>
                  </select>
-                <label for="quantity">Quantity Sold *</label>
-                <input type="text" name="quantity"  value="<?php echo $quantity ?>"  placeholder="Enter quantity sold.." required="true">
+                <label>Quantity Sold *</label>
+                <input type="text" name="quantity"  value="<?php echo $quantity ?>"  placeholder="Enter quantity sold.." required="required">
 
                 
                  
-                <label for="price">Price *</label>
+                <label >Price *</label>
                 <select  name="price"  value="<?php echo $price ?>"  >
                  <?php
                  while ($rows =$res-> fetch_assoc()){
@@ -158,12 +159,12 @@ $sale = $mysqli->query ("SELECT * FROM  sales") or die ($mysqli->error);
                  }
                  ?>
                  </select>
-                 <label for="date">Record Date *</label>
-                 <input type="date"  name="date" value="<?php echo $date ?>"  required="true" >
+                 <label >Record Date *</label>
+                 <input type="date"  name="date" value="<?php echo $date ?>"  required="required" >
                
 
-                 <label for="lname">Total Cost *</label>
-                 <input type="text" name="total" value="<?php echo $total ?>"  placeholder="Total cost.." required="true">
+                 <label >Total Cost *</label>
+                 <input type="text" name="total" value="<?php echo $total ?>"  placeholder="Total cost.." required="required">
                 
                
                  <div>
@@ -212,7 +213,7 @@ $sale = $mysqli->query ("SELECT * FROM  sales") or die ($mysqli->error);
                      <td><?php echo $row ["total"];?></td>
                      <td>
                       <a href="sales.php?edit=<?php echo $row['sales_id'];?>" class="edit">Edit</a>
-                      <a href="salesprocess.php?delete=<?php echo $row['sales_id'];?>"class="delete">Delete</a>
+                      <a href="salesprocess.php?delete=<?php echo $row['sales_id'];?>" class="delete">Delete</a>
                       </td>
                   </tr>
                   <?php endwhile;?>
@@ -228,14 +229,14 @@ $sale = $mysqli->query ("SELECT * FROM  sales") or die ($mysqli->error);
             echo "</pre>";
          }
          ?>
-      </div>
-      <!-- End of right side -->
+ 
    </div>
-   <!-- En
+      </div>
+  
 
 
    <script src="/js/main.js"></script>
-   <script type="text/javascript"> (function () { let css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+   <script> (function () { let css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
 </body>
 
 </html>
