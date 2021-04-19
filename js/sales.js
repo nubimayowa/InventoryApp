@@ -51,9 +51,10 @@ const formData = {
       price = "",
       date = "",
     } = {}) => {
-    //   Array.from(formData.staff_name.options).forEach(opt => {
-    //       opt.value === staff_name? opt.
-    //     })
+    Array.from(formData.staff_name.options).forEach(opt => {
+        debugger
+          opt.value === staff_name? opt.selected = true:""
+     })
       formData.product_name.value = product_name;
       formData.category.value = category;
       formData.quantity.value = quantity;
