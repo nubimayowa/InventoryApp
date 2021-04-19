@@ -40,7 +40,7 @@ try{
   elseif($_SERVER['REQUEST_METHOD'] === 'GET') {
     if(isset($_GET['sales_id'])) { 
       if( $_GET['sales_id'] !="") {
-        $stmtselect = $db->prepare("SELECT sales_id, staff_name, product_name, category, quantity,price, date, total FROM sales where sales_id=?");
+        $stmtselect = $db->prepare("SELECT sales_id, rg.staff_name as staff_name, rg.empid as empid, sl.product_name as product_name, pd.category, sl.quantity, sl.price, sl.date, total, product_id FROM sales sl inner join registration rg on sl.staff_name = rg.empid inner join products pd on sl.product_name = pd.product_id  where sales_id=?");
             $stmtselect-> execute([$_GET['sales_id']]);
             $sale =  $stmtselect->fetch(PDO::FETCH_ASSOC);
         if($sale){
@@ -56,7 +56,7 @@ try{
       }
     }
     else {
-      $stmtselect = $db->prepare("SELECT sales_id, staff_name, product_name, category, quantity,price, date,total FROM sales");
+      $stmtselect = $db->prepare("SELECT sales_id, rg.staff_name as staff_name, pd.product_name as product_name, pd.category, sl.quantity, sl.price, sl.date, total FROM sales sl inner join registration rg on rg.empid = sl.staff_name inner join products pd on sl.product_name = pd.product_id");
           $stmtselect-> execute();
           $sales =  $stmtselect->fetchAll(PDO::FETCH_ASSOC);
       if($sales){

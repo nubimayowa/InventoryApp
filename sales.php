@@ -21,7 +21,7 @@
          <input type="text" name="total" value=""  placeholder="Total cost.." required="required"><input type="submit" value="Submit">
             <?php 
                if(isset($_GET['edit'])) {
-                  echo "<a class='cancel' href='attendants.php'> Cancel</a>";
+                  echo "<a class='cancel' href='sales.php'> Cancel</a>";
                } 
             ?>
       </form>

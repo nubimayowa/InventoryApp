@@ -18,19 +18,22 @@ const formData = {
     // debugger
     if(typeof allStaff !== "undefined"){
         if(allStaff.length > 0) {
-            const optionsd = allStaff.map((staff) => `<option value="${staff.staff_name}">${staff.staff_name}</option>`)
+            const optionsd = allStaff.map((staff) => `<option value="${staff.empid}">${staff.staff_name}</option>`)
             formData.staff_name.innerHTML = "<option value=''>Select a staff</option>" + optionsd.join()
         }
     }
     if(typeof allproducts !== "undefined"){
         // debugger
         if(allproducts.length > 0) {
-            const options = allproducts.map((product) => `<option value="${product.product_name}">${product.product_name}</option>`)
+            const options = allproducts.map((product) => `<option value="${product.product_id}">${product.product_name}</option>`)
             formData.product_name.innerHTML = "<option value=''>Select a product</option>" + options.join()
         }
     }
+    const getProductDetaila = () => {
+
+    }
     formData.product_name.addEventListener("change", () => {
-        
+
     })
     const saleForm = document.querySelector(".sale");
     const getsalebyid = async (sales_id = "") => {
@@ -47,8 +50,10 @@ const formData = {
       }
     };
     const populateForm = ({
+        empid="",
       staff_name = "",
       product_name = "",
+      product_id = "",
       category = "",
       quantity = "",
       price = "",
@@ -56,13 +61,12 @@ const formData = {
     } = {}) => {
         Array.from(formData.staff_name.options).forEach(opt => {
             // debugger
-              opt.value === staff_name? opt.selected = true:""
+              opt.value === empid? opt.selected = true:""
          })
          Array.from(formData.product_name.options).forEach(opt => {
              // debugger
-               opt.value === product_name? opt.selected = true:""
+               opt.value === product_id? opt.selected = true:""
           })
-      formData.product_name.value = product_name;
       formData.category.value = category;
       formData.quantity.value = quantity;
       formData.price.value = price;
@@ -76,9 +80,9 @@ const formData = {
                     if (queryParams.split("=").length > 0){
                         sales_id = queryParams.split("=")[1];
 
-                        const product = await getsalebyid(sales_id);
-                        if (product) {
-                            populateForm(product);
+                        const sale = await getsalebyid(sales_id);
+                        if (sale) {
+                            populateForm(sale);
                         }
                     }
                 } catch (error) {
