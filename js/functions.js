@@ -5,7 +5,7 @@ const populateProductTBody = (data = [], action = true) => {
       <td>${element.category}</td>
       <td>${element.quantity}</td>
       <td>${element.price}</td>
-      <td>${element.date}</td>;`;
+      <td>${element.date}</td>`;
 
     tr += action
       ? `<td><button class="delete" onclick="deleteProduct('${element.product_id}')">
