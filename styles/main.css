@@ -26,6 +26,40 @@ body {
 	color: #fefffe;
 }
 
+td button, td a {
+	width: 80px;
+	height: 40px;
+	margin: 0.5em;
+	border-radius: 8px;
+	border: none;
+	font-size: 15px;
+	font-weight: 400;
+}
+
+.delete {
+	background: #ff6663;
+	color: #fefefe;
+	cursor: pointer;
+}
+
+.delete:hover {
+	color: #ff6663;
+	background: #fefefe;
+	border: 1px solid #ff6663;
+}
+
+.edit {
+	background: #b8d141;
+	color: #fefefe;
+	cursor: pointer;
+	padding: 10px;
+}
+
+.edit:hover {
+	color: #b8d141;
+	background: #fefefe;
+	border: 1px solid #b8d141;
+}
 
 #sidebar {
 	position: fixed;
