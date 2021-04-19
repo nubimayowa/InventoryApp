@@ -15,6 +15,13 @@
          <input type="text" name="price" required="required"  value="" placeholder="Enter the price">
          <label >Purchase Date *</label>
          <input type="date"  name="date" required="required" value="">
+
+         <input type="submit" value="Submit">
+         <?php 
+         if(isset($_GET['edit'])) {
+            echo "<a class='cancel' href='attendants.php'> Cancel</a>";
+         }
+         ?>
       </form>
    </div> 
 </div>
