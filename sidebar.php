@@ -81,7 +81,7 @@ header("location:login.php");
                   <li><i class="fas fa-tachometer-alt"></i> <a href="index.php"> Dashboard </a></li>
               
               
-                  <li><i class="fas fa-user-alt"></i> <a class="arrow-container"> attendants </a> </li>
+                  <li><i class="fas fa-user-alt"></i> <a href="attendants.php" > attendants </a> </li>
               
             
                   <li><i class="fas fa-people-carry"></i>    <a href="product_list.php"> products </a>

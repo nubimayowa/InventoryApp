@@ -38,7 +38,7 @@ try{
   elseif($_SERVER['REQUEST_METHOD'] === 'GET') {
     if(isset($_GET['product_id'])) { 
       if( $_GET['product_id'] !="") {
-        $stmtselect = $db->prepare("SELECT product_name, category, quantity, price, date FROM products where product_id=?");
+        $stmtselect = $db->prepare("SELECT product_id, product_name, category, quantity, price, date FROM products where product_id=?");
             $stmtselect-> execute([$_GET['product_id']]);
             $product =  $stmtselect->fetch(PDO::FETCH_ASSOC);
         if($product){
@@ -54,7 +54,7 @@ try{
       }
     }
     else {
-      $stmtselect = $db->prepare("SELECT product_name, category, quantity, price, date FROM products");
+      $stmtselect = $db->prepare("SELECT product_id, product_name, category, quantity, price, date FROM products");
           $stmtselect-> execute();
           $products =  $stmtselect->fetchAll(PDO::FETCH_ASSOC);
       if($products){
@@ -76,7 +76,7 @@ try{
         $date=  $data->date;
         $stmtselect = $db->prepare("UPDATE  products SET product_name=?, category =?, quantity=?, price=?,date=? WHERE product_id=?");
         $result = $stmtselect-> execute([$product_name, $category, $quantity, $price, $date, $_GET['product_id']]);
-        $stmtselect1 = $db->prepare("SELECT product_name, category, quantity, price, date FROM products where product_id=?");
+        $stmtselect1 = $db->prepare("SELECT product_id, product_name, category, quantity, price, date FROM products where product_id=?");
         $stmtselect1-> execute([$_GET['product_id']]);
         $product =  $stmtselect1->fetch(PDO::FETCH_ASSOC);
         header('HTTP/1.1 201 Update');
