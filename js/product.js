@@ -32,7 +32,7 @@ const deleteProduct = async (product_id = "") => {
   // deb
   const productForm = document.querySelector(".product");
   const getproductbyid = async (product_id = "") => {
-    debugger;
+    // debugger;
     const response = await fetch(`productprocess.php?product_id=${product_id}`);
     //const response = await fetch(`index.php?empid=${empid}`);
     if (response.status === 200) {
@@ -61,16 +61,19 @@ const deleteProduct = async (product_id = "") => {
   if (window.location.href.split("?").length > 0) {
     const queryParams = window.location.href.split("?")[1];
     if (queryParams !== "") {
-      try {
-        if (queryParams.split("=").length > 0)
-          product_id = queryParams.split("=")[1];
-        const product = await getproductbyid(product_id);
-        if (product) {
-          populateForm(product);
+        if (typeof queryParams !== "undefined") {
+            try {
+                if (queryParams.split("=").length > 0){
+                    product_id = queryParams.split("=")[1];
+                    const product = await getproductbyid(product_id);
+                    if (product) {
+                        populateForm(product);
+                    }
+                }
+            } catch (error) {
+                console.error(await error);
+            }
         }
-      } catch (error) {
-        console.error(await error);
-      }
     }
   }
   const createProduct = async (event) => {
@@ -85,7 +88,7 @@ const deleteProduct = async (product_id = "") => {
        
       };
       const response = await fetch(
-        `productprocess.php${empid !== "" ? "?product_id=" + product_id : ""}`,
+        `productprocess.php${product_id !== "" ? "?product_id=" + product_id : ""}`,
         {
           method: product_id === "" ? "post" : "PUT",
           body: JSON.stringify(data),

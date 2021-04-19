@@ -1,102 +1,114 @@
-
 <?php
 
+require_once("config.php");
 
-$mysqli = new mysqli ('localhost', 'root', '', 'loginsystem',) or die (mysqli_error($mysqli));
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS"); 
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 $data = json_decode(file_get_contents("php://input"));
-$sales_id =0;
-$staff_name ="";
-$product_name ="";
-$category = "";
-$quantity = "";
-$price ="";
-$total ="";
- $update = false;
-
-
- 
-if (isset($_POST['save'])){
-
-    $staff_name =$_POST['staff_name'];
-    $product_name =$_POST['product_name'];
-    $category =$_POST['category'];
-    $quantity= $_POST['quantity'];
-    $price= $_POST['price'];
-    $total= $_POST['total'];
-    $date= $_POST['date'];
-
-
-  
-  
-  $mysqli ->query ("INSERT INTO sales (staff_name, product_name, category, quantity, price,total, date) VALUES ('$staff_name', '$product_name', 
-  '$category', '$quantity', '$price','$total', '$date')")  
-  
-  or 
-  die($mysqli->error);
- 
-  
-  header("location: sales.php");
-  //final code will execute here.
-}
-
-   
-
-
-
-
-if (isset($_GET['delete']))
-{
-  $sales_id = $_GET["delete"];
-$mysqli ->query("DELETE FROM sales WHERE sales_id=$sales_id") or  die($mysqli->error());
-
-
-header("location: sales.php");
-
-}
-
-if (isset($_GET["edit"])){
-  $sales_id = $_GET["edit"];
-  $update = true;
-  $result = $mysqli-> query("SELECT * FROM  sales WHERE sales_id=$sales_id")  or  die($mysqli->error());
-
-  if (($result)==1){
-
-    $row = $result->fetch_array();
-    $staff_name = $row["staff_name"];
-    $product_name = $row["product_name"];
-    $category = $row["category"];
-    $quantity = $row["quantity"];
-    $price = $row["price"];
-    $total = $row["total"];
-    $date = $row["date"];
-
-   
+try{
+  if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $staff_name = $data->staff_name;
+    $product_name = $data->product_name;
+    $category = $data->category;
+    $quantity = $data->quantity;
+    $price = $data->price;
+    $date = $data->date;
+    $total=  $data->total;
+    if($staff_name !=="" && $product_name !== "" && $category !== "" && $quantity !== "" && $price  !== "" && $date  !== "" &&  $total !== "") {
+      $stmtselect = $db->prepare("INSERT INTO sales (staff_name, product_name, category, quantity, price,date, total) VALUES (?, ?, ?, ?, ?)");
+      $result = $stmtselect-> execute([$staff_name,$product_name, $category, $quantity, $price, $date,$total, ]);
+      $id = $db->lastInsertId();
+      $stmtselect1 = $db->prepare("SELECT * FROM sales WHERE id=?");
+      $stmtselect1-> execute([$id]);
+      $sale =  $stmtselect1->fetch(PDO::FETCH_ASSOC);
+      if($sale) {
+        header('HTTP/1.1 201 Created');
+        echo json_encode($sale);
+      } else {
+        header('HTTP/1.1 400 Error');
+        echo json_encode(array("msg" => "Error in saving"));
+      }
+    } else {
+        header('HTTP/1.1 400 Error');
+        echo json_encode(array("msg" => "Error in saving"));
+    }
   } 
+  elseif($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if(isset($_GET['sales_id'])) { 
+      if( $_GET['sales_id'] !="") {
+        $stmtselect = $db->prepare("SELECT sales_id, staff_name, product_name, category, quantity,price, date, total FROM sales where sales_id=?");
+            $stmtselect-> execute([$_GET['sales_id']]);
+            $sale =  $stmtselect->fetch(PDO::FETCH_ASSOC);
+        if($sale){
+            header('HTTP/1.1 200 Success');
+            echo json_encode($sale);
+        } else {
+            header('HTTP/1.1 404 Error');
+            echo json_encode(array("msg" => "sales does not exist"));
+        }
+      } else {
+          header('HTTP/1.1 400 Error');
+          echo json_encode(array("msg" => "Error in fetching sales"));
+      }
+    }
+    else {
+      $stmtselect = $db->prepare("SELECT sales_id, staff_name, product_name, category, quantity,price, date,total FROM sales");
+          $stmtselect-> execute();
+          $sales =  $stmtselect->fetchAll(PDO::FETCH_ASSOC);
+      if($sales){
+          header('HTTP/1.1 200 Success');
+          echo json_encode($sales);
+      } else {
+          $result = array("msg" => "Error in fetching sales");
+          header('HTTP/1.1 400 Error');
+          echo json_encode($result);
+      }
+    }
+  } elseif($_SERVER['REQUEST_METHOD'] === 'PUT') {
+    if(isset($_GET['sales_id'])) {
+      if($_GET['sales_id'] !== "") {
+        $staff_name = $data->staff_name;
+        $product_name = $data->product_name;
+        $category = $data->category;
+        $quantity = $data->quantity;
+        $price = $data->price;
+        $date=  $data->date;
+        $total=  $data->total;
+        $stmtselect = $db->prepare("UPDATE  sales SET staff_name=?,  product_name=?, category =?, quantity=?, price=?,date=?,total=?  WHERE sales_id=?");
+        $result = $stmtselect-> execute([$staff_name,  $product_name, $category, $quantity, $price, $date,$total, $_GET['sales_id']]);
+        $stmtselect1 = $db->prepare("SELECT sales_id,staff_name, product_name, category, quantity, price, date, total FROM sales where sales_id=?");
+        $stmtselect1-> execute([$_GET['sales_id']]);
+        $sale =  $stmtselect1->fetch(PDO::FETCH_ASSOC);
+        header('HTTP/1.1 201 Update');
+        echo json_encode($sale);
+       }
+    }
+  } elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    if($data->sales_id !== "") {
+      // print_r($data);
+      $stmtselect = $db->prepare("delete FROM sales where sales_id=?");
+      $result = $stmtselect-> execute([$data->sales_id]);
+      if($result) {
+        header('HTTP/1.1 201 Success');
+        echo json_encode(array("msg" => "Deleted successfully"));
+      } else {
+        header('HTTP/1.1 400 Error');
+        echo json_encode(array("msg" => "Error in deleting sale"));
+      }
+    } else {
+      header('HTTP/1.1 400 Error');
+      echo json_encode(array("msg" => "No sales sent"));
+    }
+  }
 }
-
-if (isset($_POST['update'])){
-  $sales_id = $_POST['sales_id'];
-  $staff_name = $_POST['staff_name'];
-  $product_name = $_POST['product_name'];
-  $category= $_POST['category'];
-  $quantity= $_POST['quantity'];
-  $price= $_POST['price'];
-  $total= $_POST['total'];
-  $date= $_POST['date'];
-
-
- $mysqli ->query ("UPDATE  sales SET staff_name='$staff_name', product_name='$product_name', category ='$category', quantity = '$quantity',price= '$price', total= '$total',date= '$date' WHERE sales_id=$sales_id")
-  or  die($mysqli->error);
- 
-
-
-  header("location: sales.php");
- 
- }
+catch(Exception $ex){
+    // print_r($result);
+    header('HTTP/1.1 500 Error');
+    echo json_encode($ex);
+}
 
 ?>
-
-
-
-

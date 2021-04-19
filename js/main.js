@@ -1,3 +1,4 @@
+
 const togggleButton = document.querySelector(".toggle-btn");
 const sidebar = document.getElementById("sidebar");
 let input, filter, table, tr, td, i;
@@ -29,13 +30,38 @@ searchProduct = () => {
 	}
 };
 
-togggleButton.addEventListener("click", toggleSidebar);
-input.addEventListener("keyup", searchProduct);
+// togggleButton.addEventListener("click", toggleSidebar);
+// input.addEventListener("keyup", searchProduct);
 
 (function() {
+	const menuList = [{
+		fontClass: "fas fa-tachometer-alt",
+		name: "Dashboard",
+		href: "index.php"
+	}, {
+		fontClass: "fas fa-user-alt",
+		name: "Attendants",
+		href: "attendants.php"
+	}, {
+		fontClass: "fas fa-dollar-sign",
+		name: "Sales",
+		href: "sales.php"
+	}, {
+		fontClass: "fas fa-sign-out-alt",
+		name: "Log out",
+		href: "?logout=true"
+	}]
+  const list = menuList.map((menu) => {
+
+	return `<a ${ window.location.href.indexOf(menu.href) > -1?  'class="arrow-container" href="#" ':'href="'+menu.href+'"'}>
+	${ window.location.href.indexOf(menu.href) > -1? '<div class="arrow-left"></div>':''} <li><i class="${menuList.fontClass}"></i> ${menu.name}</li></a>`  
+  })
+  document.querySelector("#menu").innerHTML = list.join()
+setTimeout(() => {
 	let css = document.createElement("link");
 	css.href = "https://use.fontawesome.com/releases/v5.1.0/css/all.css";
 	css.rel = "stylesheet";
 	css.type = "text/css";
 	document.getElementsByTagName("head")[0].appendChild(css);
+},4000)
 })()

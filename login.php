@@ -63,7 +63,7 @@ if (isset($_SESSION['userlogin'])){
                 setTimeout(() =>  window.location.href="index.php", 2000)
             } else if(+response.status === 400) {
                 const error = await response.json();
-                debugger
+                // debugger
                 alert(error.msg)
             } else {
                 alert("An error occurred!")

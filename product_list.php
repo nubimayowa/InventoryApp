@@ -8,7 +8,7 @@
          <label >Product Name *</label>
          <input type="text" name="product_name" required="required" value="" placeholder="Product name..">
          <label>Quantity *</label>
-         <input type="text" name="quantity" required="required" value="" placeholder="How many are you adding..">    
+         <input type="number" name="quantity" required="required" value="" placeholder="How many are you adding..">    
          <label >Category *</label>
          <input type="text" name="category" required="required" value="" placeholder="Enter the category...">
          <label >Price *</label>
@@ -19,7 +19,7 @@
          <input type="submit" value="Submit">
          <?php 
          if(isset($_GET['edit'])) {
-            echo "<a class='cancel' href='attendants.php'> Cancel</a>";
+            echo "<a class='cancel' href='product_list.php'> Cancel</a>";
          }
          ?>
       </form>

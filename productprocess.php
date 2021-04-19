@@ -100,28 +100,7 @@ try{
       echo json_encode(array("msg" => "No product sent"));
     }
   }
-// $db_user = 'root';//or localhost
-// $db_pass = ''; // your db_name
-// $db_name = 'loginsystem'; // root by default for localhost 
-//  // by defualt empty for localhost
-
-// $db = new PDO("mysql:host=localhost; dbname=" . $db_name . ";charset=utf8", $db_user, $db_pass);
-// $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-
-
-
-/*// <tr>
-// <td><?php echo $row ["product_name"];?></td>
-// <td><?php echo $row ["category"];?></td>
-// <td><?php echo $row ["quantity"];?></td>
-// <td><?php echo $row ["price"];?></td>
-// <td><?php echo $row ["date"];?></td>
-// <!-- <td>
-//  <a href="product_list.php?edit=<?php echo $row['product_id'];?>" class="edit">Edit</a>
-//  <a href="productprocess.php?delete=<?php echo $row['product_id'];?>"class="delete">Delete</a>
-//  </td> -->
-// </tr> */
-}
+} 
 catch(Exception $ex){
     // print_r($result);
     header('HTTP/1.1 500 Error');

@@ -29,7 +29,7 @@ header("location:login.php");
    <title>Attendants</title>
 
 <style>
-   input[type=text], select, input[type=tel], input[type=date], input[type=password], input[type=email]  {
+   input[type=text], select, input[type=tel], input[type=date], input[type=password], input[type=email], input[type=number]  {
      width: 100%;
      padding: 10px 50px;
      margin: 8px 0;
@@ -76,25 +76,7 @@ header("location:login.php");
             </div>
             <!-- toggle-button -->
             <h1 id="logo">Lifted Store</h1>
-            <ul>
-               
-                  <li><i class="fas fa-tachometer-alt"></i> <a href="index.php"> Dashboard </a></li>
-              
-              
-                  <li><i class="fas fa-user-alt"></i> <a href="attendants.php" > attendants </a> </li>
-              
-            
-                  <li><i class="fas fa-people-carry"></i>    <a href="product_list.php"> products </a>
-            </li>
-               
-               
-                  <li><i class="fas fa-dollar-sign"></i> <a href="sales.php"> sales</a></li>
-            
-              
-                  <li><i class="fas fa-sign-out-alt"></i>  <a href="attendants.php?logout=true"> logout  </a></li>
-              
-
-            </ul>
+            <ul id="menu"></ul>
          </div>
          <!-- sidebar -->
       </div>

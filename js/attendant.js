@@ -17,29 +17,29 @@ const deleteAttendant = async (empid = "") => {
       const attendants = await getAttendants();
       populateAttendantTBody(attendants);
       alert("Attendant Deleted Successfully");
-    } else if(response.status === 400) {
+    } else if (response.status === 400) {
       const error = await response.json();
       alert(error.msg);
     } else {
-      alert("An error occurred")
+      alert("An error occurred");
     }
   }
 };
 (async function () {
-  let empid = ""
+  let empid = "";
   // deb
   const attendantForm = document.querySelector(".attendant");
   const getattendantbyempid = async (empid = "") => {
-    debugger;
+    // debugger;
     const response = await fetch(`jsattendant.php?empid=${empid}`);
     //const response = await fetch(`index.php?empid=${empid}`);
     if (response.status === 200) {
       return response.json();
-    } else if(response.status === 400 || response.status === 404) {
+    } else if (response.status === 400 || response.status === 404) {
       const error = await response.json();
       alert(error.msg);
     } else {
-      alert("An error occurred")
+      alert("An error occurred");
     }
   };
   const populateForm = ({
@@ -59,15 +59,18 @@ const deleteAttendant = async (empid = "") => {
   if (window.location.href.split("?").length > 0) {
     const queryParams = window.location.href.split("?")[1];
     if (queryParams !== "") {
-      try {
-        if(queryParams.split("=").length > 0)
-        empid = queryParams.split("=")[1]
-        const attendant = await getattendantbyempid(empid);
-        if (attendant) {
-          populateForm(attendant);
+      if (typeof queryParams !== "undefined") {
+        try {
+          if (queryParams.split("=").length > 0) {
+            empid = queryParams.split("=")[1];
+            const attendant = await getattendantbyempid(empid);
+            if (attendant) {
+              populateForm(attendant);
+            }
+          }
+        } catch (error) {
+          console.error(await error);
         }
-      } catch (error) {
-          console.error(await error)
       }
     }
   }
@@ -82,21 +85,24 @@ const deleteAttendant = async (empid = "") => {
         email: formData.email.value,
         doe: formData.doe.value,
       };
-      const response = await fetch(`jsattendant.php${empid !== ""?'?empid='+empid:""}`, {
-        method: empid ===""? "post":"PUT",
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `jsattendant.php${empid !== "" ? "?empid=" + empid : ""}`,
+        {
+          method: empid === "" ? "post" : "PUT",
+          body: JSON.stringify(data),
+        }
+      );
 
       if ((response.status = 201)) {
         const attendants = await getAttendants();
         populateAttendantTBody(attendants);
-        empid !== ""? "":populateForm();
-        alert(`Attendant ${empid !== ""? 'updated' : 'added'} successfully`);
-      } else if(response.status === 400) {
+        empid !== "" ? "" : populateForm();
+        alert(`Attendant ${empid !== "" ? "updated" : "added"} successfully`);
+      } else if (response.status === 400) {
         const error = await response.json();
         alert(error.msg);
       } else {
-        alert("An error occurred")
+        alert("An error occurred");
       }
     } catch (err) {
       alert(err);
@@ -108,5 +114,4 @@ const deleteAttendant = async (empid = "") => {
   const attendants = await getAttendants();
   // debugger
   populateAttendantTBody(attendants);
- 
 })();
