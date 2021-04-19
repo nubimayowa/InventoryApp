@@ -39,7 +39,7 @@ const populateAttendantTBody = (data = [], action = true) => {
     document.querySelector("#attendantTbody").innerHTML = tBody.join();
   };
   const populateSaleTBody = (data = [], action = true) => {
-      debugger
+      // debugger
     const tBody = data.map((element) => {
       let tr = `<tr>
      <td>${element.staff_name}</td>
@@ -101,3 +101,17 @@ const getSales = async () => {
     alert("An error occurred");
   }
 };
+
+const getproductbyid = async (product_id = "") => {
+    // debugger;
+    const response = await fetch(`productprocess.php?product_id=${product_id}`);
+    //const response = await fetch(`index.php?empid=${empid}`);
+    if (response.status === 200) {
+      return response.json();
+    } else if (response.status === 400 || response.status === 404) {
+      const error = await response.json();
+      alert(error.msg);
+    } else {
+      alert("An error occurred");
+    }
+  };

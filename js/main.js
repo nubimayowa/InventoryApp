@@ -44,6 +44,10 @@ searchProduct = () => {
 		href: "attendants.php"
 	}, {
 		fontClass: "fas fa-dollar-sign",
+		name: "Products",
+		href: "product_list.php"
+	}, {
+		fontClass: "fas fa-dollar-sign",
 		name: "Sales",
 		href: "sales.php"
 	}, {

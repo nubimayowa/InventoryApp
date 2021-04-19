@@ -12,13 +12,14 @@
          <label>Category *</label>
          <input name="category"  type="text" value="" readonly="readonly" />
          <label>Quantity Sold *</label>
-         <input type="number" name="quantity"  value=""  placeholder="Enter quantity sold.." required="required">
+         <input type="number" name="quantity"  value=""  placeholder="Enter quantity sold.." required="required" readonly="readonly" >
          <label >Price *</label>
          <input name="price"  value="" type="number" readonly ="readonly">
          <label >Record Date *</label>
          <input type="date"  name="date" value=""  required="required" >
          <label >Total Cost *</label>
-         <input type="text" name="total" value=""  placeholder="Total cost.." required="required"><input type="submit" value="Submit">
+         <input type="number" name="total" value=""  placeholder="Total cost.." required="required" readonly="readonly" >
+         <input type="submit" value="Submit">
             <?php 
                if(isset($_GET['edit'])) {
                   echo "<a class='cancel' href='sales.php'> Cancel</a>";

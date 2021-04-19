@@ -12,7 +12,7 @@
          <label >Category *</label>
          <input type="text" name="category" required="required" value="" placeholder="Enter the category...">
          <label >Price *</label>
-         <input type="text" name="price" required="required"  value="" placeholder="Enter the price">
+         <input type="number" name="price" required="required"  value="" placeholder="Enter the price">
          <label >Purchase Date *</label>
          <input type="date"  name="date" required="required" value="">
 

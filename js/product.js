@@ -31,19 +31,6 @@ const deleteProduct = async (product_id = "") => {
   let product_id = "";
   // deb
   const productForm = document.querySelector(".product");
-  const getproductbyid = async (product_id = "") => {
-    // debugger;
-    const response = await fetch(`productprocess.php?product_id=${product_id}`);
-    //const response = await fetch(`index.php?empid=${empid}`);
-    if (response.status === 200) {
-      return response.json();
-    } else if (response.status === 400 || response.status === 404) {
-      const error = await response.json();
-      alert(error.msg);
-    } else {
-      alert("An error occurred");
-    }
-  };
   const populateForm = ({
     product_id = "",
     product_name = "",

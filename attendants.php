@@ -57,7 +57,7 @@
 
          <h2 class="container-title">attendants info</h2>
          <input type="text" id="myInput" placeholder='Search for staff by Employment Id..'>
-         <div clatss="down-info-container">
+         <div class="down-info-container">
             <table class="table4 searchTable">
                <thead>
                   <tr>

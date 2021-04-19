@@ -19,10 +19,10 @@ try{
     $date = $data->date;
     $total=  $data->total;
     if($staff_name !=="" && $product_name !== "" && $category !== "" && $quantity !== "" && $price  !== "" && $date  !== "" &&  $total !== "") {
-      $stmtselect = $db->prepare("INSERT INTO sales (staff_name, product_name, category, quantity, price,date, total) VALUES (?, ?, ?, ?, ?)");
-      $result = $stmtselect-> execute([$staff_name,$product_name, $category, $quantity, $price, $date,$total, ]);
+      $stmtselect = $db->prepare("INSERT INTO sales (empid, product_id, quantity, price, date, total) VALUES (?, ?, ?, ?, ?, ?)");
+      $result = $stmtselect-> execute([$staff_name,$product_name, $quantity, $price, $date,$quantity * $price]);
       $id = $db->lastInsertId();
-      $stmtselect1 = $db->prepare("SELECT * FROM sales WHERE id=?");
+      $stmtselect1 = $db->prepare("SELECT * FROM sales WHERE sales_id=?");
       $stmtselect1-> execute([$id]);
       $sale =  $stmtselect1->fetch(PDO::FETCH_ASSOC);
       if($sale) {
@@ -40,7 +40,7 @@ try{
   elseif($_SERVER['REQUEST_METHOD'] === 'GET') {
     if(isset($_GET['sales_id'])) { 
       if( $_GET['sales_id'] !="") {
-        $stmtselect = $db->prepare("SELECT sales_id, rg.staff_name as staff_name, rg.empid as empid, sl.product_name as product_name, pd.category, sl.quantity, sl.price, sl.date, total, product_id FROM sales sl inner join registration rg on sl.staff_name = rg.empid inner join products pd on sl.product_name = pd.product_id  where sales_id=?");
+        $stmtselect = $db->prepare("SELECT sales_id, rg.staff_name, rg.empid as empid, pd.product_name, pd.category, sl.quantity, sl.price, sl.date, total, sl.product_id FROM sales sl inner join registration rg on sl.empid = rg.empid inner join products pd on sl.product_id = pd.product_id  where sales_id=?");
             $stmtselect-> execute([$_GET['sales_id']]);
             $sale =  $stmtselect->fetch(PDO::FETCH_ASSOC);
         if($sale){
@@ -56,7 +56,7 @@ try{
       }
     }
     else {
-      $stmtselect = $db->prepare("SELECT sales_id, rg.staff_name as staff_name, pd.product_name as product_name, pd.category, sl.quantity, sl.price, sl.date, total FROM sales sl inner join registration rg on rg.empid = sl.staff_name inner join products pd on sl.product_name = pd.product_id");
+      $stmtselect = $db->prepare("SELECT sales_id, rg.staff_name, pd.product_name, pd.category, sl.quantity, sl.price, sl.date, total FROM sales sl inner join registration rg on rg.empid = sl.empid inner join products pd on sl.product_id = pd.product_id");
           $stmtselect-> execute();
           $sales =  $stmtselect->fetchAll(PDO::FETCH_ASSOC);
       if($sales){
