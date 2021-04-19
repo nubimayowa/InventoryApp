@@ -38,7 +38,7 @@
                </thead>
                <tbody id="attendantTbody">
                   <tr>
-                  <td colspan="6">No data</td>
+                  <td colspan="5">No data</td>
                   </tr>
                </tbody>
             </table>
