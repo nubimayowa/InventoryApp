@@ -1,4 +1,3 @@
-
 <?php
 
 require_once("config.php");
@@ -21,8 +20,7 @@ try{
         $doe = $data->doe;
         if($empid !== "" && $email !== "" && $pass !== "" && $mob !== "" && $doe !== "" && $staff_name !== "") {
             $password = hash("SHA256", $pass);
-            $sql = "insert into registration(empid, email, staff_name, pass, mob, doe) value(?, ?, ?, ?, ?, ?)";
-            $stmtselect = $db->prepare($sql);
+            $stmtselect = $db->prepare("insert into registration(empid, email, staff_name, pass, mob, doe) value(?, ?, ?, ?, ?, ?)");
             $result = $stmtselect-> execute([$empid, $email, $staff_name, $password, $mob, $doe]);
             $id = $db->lastInsertId();
             $stmtselect1 = $db->prepare("SELECT * FROM registration WHERE id=?");
@@ -75,7 +73,7 @@ try{
                $result = $stmtselect-> execute([$data->empid]);
             if($result){
                 header('HTTP/1.1 201 Success');
-                echo json_encode(array("msg" => "Delected successfully"));
+                echo json_encode(array("msg" => "Deleted successfully"));
             } else {
                 header('HTTP/1.1 400 Error');
                 echo json_encode(array("msg" => "Error in deleting attendants"));
@@ -103,9 +101,7 @@ try{
                         $emp =  $stmtselect2->fetch(PDO::FETCH_ASSOC);
                         $password = $emp['pass'];
                     }
-
-                    $sql = "update registration set email =?, staff_name =?, pass =?, mob=?, doe=? where empid=?";
-                    $stmtselect = $db->prepare($sql);
+                    $stmtselect = $db->prepare("update registration set email =?, staff_name =?, pass =?, mob=?, doe=? where empid=?");
                     $result = $stmtselect-> execute([$email, $staff_name, $password, $mob, $doe, $empid]);
                     $stmtselect1 = $db->prepare("SELECT * FROM registration WHERE empid=?");
                     $stmtselect1-> execute([$empid]);

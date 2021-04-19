@@ -15,43 +15,18 @@ const deleteAttendant = async (empid = "") => {
     });
     if (response.status === 201) {
       const attendants = await getAttendants();
-      populateTBody(attendants);
+      populateAttendantTBody(attendants);
       alert("Attendant Deleted Successfully");
+    } else if(response.status === 400) {
+      const error = await response.json();
+      alert(error.msg);
+    } else {
+      alert("An error occurred")
     }
   }
 };
-const getAttendants = async () => {
-  const response = await fetch("jsattendant.php");
-  //   debugger
-  if (response.status === 200) {
-    return response.json();
-  }
-};
-
-
-const populateTBody = (data = []) => {
-  const tBody = data.map((element) => {
-    return `<tr>
- <td>${element.empid}</td>
- <td>${element.staff_name}</td>
- <td>${element.mob}</td>
- <td>${element.email}</td>
- <td>${element.doe}</td>
- <td><button class="delete" onclick="deleteAttendant('${element.empid}')">
-    Delete
- </button>
- <a class="edit" href="?edit=${element.empid}">Edit</a></td>
- </tr>`;
-  });
-  document.querySelector("#tbody").innerHTML = tBody.join();
-};
 (async function () {
   let empid = ""
-  let css = document.createElement("link");
-  css.href = "https://use.fontawesome.com/releases/v5.1.0/css/all.css";
-  css.rel = "stylesheet";
-  css.type = "text/css";
-  document.getElementsByTagName("head")[0].appendChild(css);
   // deb
   const attendantForm = document.querySelector(".attendant");
   const getattendantbyempid = async (empid = "") => {
@@ -60,7 +35,12 @@ const populateTBody = (data = []) => {
     //const response = await fetch(`index.php?empid=${empid}`);
     if (response.status === 200) {
       return response.json();
-    } else throw response.json();
+    } else if(response.status === 400 || response.status === 404) {
+      const error = await response.json();
+      alert(error.msg);
+    } else {
+      alert("An error occurred")
+    }
   };
   const populateForm = ({
     empid = "",
@@ -109,10 +89,15 @@ const populateTBody = (data = []) => {
 
       if ((response.status = 201)) {
         const attendants = await getAttendants();
-        populateTBody(attendants);
+        populateAttendantTBody(attendants);
         empid !== ""? "":populateForm();
         alert(`Attendant ${empid !== ""? 'updated' : 'added'} successfully`);
-      } else throw new Error(response);
+      } else if(response.status === 400) {
+        const error = await response.json();
+        alert(error.msg);
+      } else {
+        alert("An error occurred")
+      }
     } catch (err) {
       alert(err);
     }
@@ -122,6 +107,6 @@ const populateTBody = (data = []) => {
 
   const attendants = await getAttendants();
   // debugger
-  populateTBody(attendants);
+  populateAttendantTBody(attendants);
  
 })();
