@@ -29,12 +29,11 @@
             <table class="table4 searchTable">
                <thead>
                   <tr>
-                     <th>EMPLOYMENT ID</th>
+                     <th>EMPLOYMEE ID</th>
                      <th>STAFF NAME</th>
                      <th>MOBILE NUMBER</th>
                      <th>EMAIL ADRESS</th>
                      <th>EMPLOYMENT DATE</th>
-                     <th>OPERATION</th>
                   </tr>
                </thead>
                <tbody id="attendantTbody">
