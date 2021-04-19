@@ -39,7 +39,7 @@ const populateAttendantTBody = (data = [], action = true) => {
     document.querySelector("#attendantTbody").innerHTML = tBody.join();
   };
   const populateSaleTBody = (data = [], action = true) => {
-      // debugger
+      debugger
     const tBody = data.map((element) => {
       let tr = `<tr>
      <td>${element.staff_name}</td>
@@ -51,16 +51,17 @@ const populateAttendantTBody = (data = [], action = true) => {
      <td>${element.total}</td>`;
      
       tr += action
-        ? `<td><button class="delete" onclick="deleteAttendant('${element.sale_id}')">
+        ? `<td><button class="delete" onclick="deleteAttendant('${element.sales_id}')">
         Delete
      </button>
-     <a class="edit" href="?edit=${element.sale_id}">Edit</a></td>
+     <a class="edit" href="?edit=${element.sales_id}">Edit</a></td>
      </tr>`
         : "";
       return tr;
     });
     document.querySelector("#saleTbody").innerHTML = tBody.join();
   };
+
 const getAttendants = async () => {
   const response = await fetch("jsattendant.php");
   //   // debugger
@@ -89,7 +90,7 @@ const getProducts = async () => {
 
 
 const getSales = async () => {
-    //debugger
+// debugger
   const response = await fetch("salesprocess.php"); //   // debugger
   if (response.status === 200) {
     return response.json();

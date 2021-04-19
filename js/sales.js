@@ -11,11 +11,11 @@ const formData = {
 
 
 (async function () {
-    let sale_id = "";
+    let sales_id = "";
     // deb
     const allStaff = await getAttendants()
     const allproducts = await getProducts()
-    debugger
+    // debugger
     if(typeof allStaff !== "undefined"){
         if(allStaff.length > 0) {
             const optionsd = allStaff.map((staff) => `<option value="${staff.staff_name}">${staff.staff_name}</option>`)
@@ -29,10 +29,13 @@ const formData = {
             formData.product_name.innerHTML = "<option value=''>Select a product</option>" + options.join()
         }
     }
+    formData.product_name.addEventListener("change", () => {
+        
+    })
     const saleForm = document.querySelector(".sale");
-    const getsalebyid = async (sale_id = "") => {
+    const getsalebyid = async (sales_id = "") => {
       // debugger;
-      const response = await fetch(`salesprocess.php?sale_id=${sale_id}`);
+      const response = await fetch(`salesprocess.php?sales_id=${sales_id}`);
       //const response = await fetch(`index.php?empid=${empid}`);
       if (response.status === 200) {
         return response.json();
@@ -51,10 +54,14 @@ const formData = {
       price = "",
       date = "",
     } = {}) => {
-    Array.from(formData.staff_name.options).forEach(opt => {
-        debugger
-          opt.value === staff_name? opt.selected = true:""
-     })
+        Array.from(formData.staff_name.options).forEach(opt => {
+            // debugger
+              opt.value === staff_name? opt.selected = true:""
+         })
+         Array.from(formData.product_name.options).forEach(opt => {
+             // debugger
+               opt.value === product_name? opt.selected = true:""
+          })
       formData.product_name.value = product_name;
       formData.category.value = category;
       formData.quantity.value = quantity;
@@ -67,8 +74,9 @@ const formData = {
             if (typeof queryParams !== "undefined") {
                 try {
                     if (queryParams.split("=").length > 0){
-                        sale_id = queryParams.split("=")[1];
-                        const product = await getsalebyid(sale_id);
+                        sales_id = queryParams.split("=")[1];
+
+                        const product = await getsalebyid(sales_id);
                         if (product) {
                             populateForm(product);
                         }
@@ -93,9 +101,9 @@ const formData = {
          
         };
         const response = await fetch(
-          `salesprocess.php${sale_id !== "" ? "?sale_id=" + sale_id : ""}`,
+          `salesprocess.php${sales_id !== "" ? "?sales_id=" + sales_id : ""}`,
           {
-            method: sale_id === "" ? "post" : "PUT",
+            method: sales_id === "" ? "post" : "PUT",
             body: JSON.stringify(data),
           }
         );
@@ -103,8 +111,8 @@ const formData = {
         if ((response.status = 201)) {
           const sales = await getSales;
           populateSaleTBody(sales);
-          sale_id !== "" ? "" : populateForm();
-          alert(`Sale ${sale_id !== "" ? "updated" : "added"} successfully`);
+          sales_id !== "" ? "" : populateForm();
+          alert(`Sale ${sales_id !== "" ? "updated" : "added"} successfully`);
         } else if (response.status === 400) {
           const error = await response.json();
           alert(error.msg);
