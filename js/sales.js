@@ -10,6 +10,25 @@ const formData = {
 };
 
 
+const deleteSale = async (sales_id = "") => {
+    const conf = confirm("Are you sure you want to delete");
+    if (conf) {
+      const response = await fetch(`salesprocess.php`, {
+        method: "delete",
+        body: JSON.stringify({ sales_id }),
+      });
+      if (response.status === 201) {
+        const sales = await getSales();
+        populateSaleTBody(sales);
+        alert("Sale Deleted Successfully");
+      } else if (response.status === 400) {
+        const error = await response.json();
+        alert(error.msg);
+      } else {
+        alert("An error occurred");
+      }
+    }
+  };
 (async function () {
     let sales_id = "";
     // deb
@@ -65,7 +84,7 @@ const formData = {
     const populateForm = ({
         empid="",
       staff_name = "",
-      product_name = "",
+      product_name = 0,
       product_id = "",
       category = "",
       quantity = 0,
@@ -75,11 +94,17 @@ const formData = {
     } = {}) => {
         Array.from(formData.staff_name.options).forEach(opt => {
             // debugger
-              opt.value === empid? opt.selected = true:formData.staff_name.options[0].selected = true
+              opt.value === empid? opt.selected = true:""
+              if(empid === "") {
+                formData.staff_name.options[0].selected = true
+              }
          })
          Array.from(formData.product_name.options).forEach(opt => {
              // debugger
-               opt.value === product_id? opt.selected = true:formData.product_name.options[0].selected = true
+               opt.value === product_id? opt.selected = true:""
+               if(product_id === 0) {
+                formData.product_name.options[0].selected = true
+               }
           })
       formData.category.value = category;
       formData.quantity.value = quantity;
@@ -98,6 +123,7 @@ const formData = {
                         sales_id = queryParams.split("=")[1];
 
                         const sale = await getsalebyid(sales_id);
+                        debugger
                         if (sale) {
                             populateForm(sale);
                         }
@@ -130,7 +156,7 @@ const formData = {
         );
   
         if ((response.status = 201)) {
-          const sales = await getSales;
+          const sales = await getSales();
           populateSaleTBody(sales);
           sales_id !== "" ? "" : populateForm();
           alert(`Sale ${sales_id !== "" ? "updated" : "added"} successfully`);

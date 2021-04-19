@@ -51,7 +51,7 @@ const populateAttendantTBody = (data = [], action = true) => {
      <td>${element.total}</td>`;
      
       tr += action
-        ? `<td><button class="delete" onclick="deleteAttendant('${element.sales_id}')">
+        ? `<td><button class="delete" onclick="deleteSale('${element.sales_id}')">
         Delete
      </button>
      <a class="edit" href="?edit=${element.sales_id}">Edit</a></td>

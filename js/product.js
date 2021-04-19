@@ -8,25 +8,24 @@ const formData = {
 
 
 const deleteProduct = async (product_id = "") => {
-  const conf = confirm("Are you sure you want to delete");
-  if (conf) {
-    const response = await fetch(`productprocess.php`, {
-      method: "delete",
-      body: JSON.stringify({ product_id }),
-    });
-    if (response.status === 201) {
-      const products = await getProducts();
-      populateProductTBody(products);
-      alert("Product Deleted Successfully");
-    } else if (response.status === 400) {
-      const error = await response.json();
-      alert(error.msg);
-    } else {
-      alert("An error occurred");
+    const conf = confirm("Are you sure you want to delete");
+    if (conf) {
+      const response = await fetch(`productprocess.php`, {
+        method: "delete",
+        body: JSON.stringify({ product_id }),
+      });
+      if (response.status === 201) {
+        const products = await getProducts();
+        populateProductTBody(products);
+        alert("Product Deleted Successfully");
+      } else if (response.status === 400) {
+        const error = await response.json();
+        alert(error.msg);
+      } else {
+        alert("An error occurred");
+      }
     }
-  }
-};
-
+  };
 (async function () {
   let product_id = "";
   // deb

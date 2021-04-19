@@ -81,7 +81,7 @@ body {
 
 .username,
 .password {
-	width: 100%;
+	width: 80%;
 	height: 42px;
 	border-radius: 5px;
 	border: 1px solid #ccc;

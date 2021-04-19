@@ -58,7 +58,7 @@ if (isset($_SESSION['userlogin'])){
                 method: 'POST',
                 body: JSON.stringify({empId: username, password: password})
             })
-            alert('Logging in...')
+            alert('Trying to Log in...')
             if(+response.status === 200) {
                 setTimeout(() =>  window.location.href="index.php", 2000)
             } else if(+response.status === 400) {

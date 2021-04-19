@@ -40,7 +40,7 @@ try{
   elseif($_SERVER['REQUEST_METHOD'] === 'GET') {
     if(isset($_GET['sales_id'])) { 
       if( $_GET['sales_id'] !="") {
-        $stmtselect = $db->prepare("SELECT sales_id, rg.staff_name, rg.empid as empid, pd.product_name, pd.category, sl.quantity, sl.price, sl.date, total, sl.product_id FROM sales sl inner join registration rg on sl.empid = rg.empid inner join products pd on sl.product_id = pd.product_id  where sales_id=?");
+        $stmtselect = $db->prepare("SELECT sales_id, rg.staff_name, rg.empid, pd.product_name, pd.category, sl.quantity, sl.price, sl.date, total, sl.product_id FROM sales sl inner join registration rg on sl.empid = rg.empid inner join products pd on sl.product_id = pd.product_id  where sales_id=?");
             $stmtselect-> execute([$_GET['sales_id']]);
             $sale =  $stmtselect->fetch(PDO::FETCH_ASSOC);
         if($sale){
@@ -56,7 +56,7 @@ try{
       }
     }
     else {
-      $stmtselect = $db->prepare("SELECT sales_id, rg.staff_name, pd.product_name, pd.category, sl.quantity, sl.price, sl.date, total FROM sales sl inner join registration rg on rg.empid = sl.empid inner join products pd on sl.product_id = pd.product_id");
+      $stmtselect = $db->prepare("SELECT sales_id, rg.staff_name, rg.empid, pd.product_name, pd.category, sl.quantity, sl.price, sl.date, total, sl.product_id FROM sales sl inner join registration rg on sl.empid = rg.empid inner join products pd on sl.product_id = pd.product_id");
           $stmtselect-> execute();
           $sales =  $stmtselect->fetchAll(PDO::FETCH_ASSOC);
       if($sales){
@@ -78,10 +78,10 @@ try{
         $price = $data->price;
         $date=  $data->date;
         $total=  $data->total;
-        $stmtselect = $db->prepare("UPDATE  sales SET staff_name=?,  product_name=?, category =?, quantity=?, price=?,date=?,total=?  WHERE sales_id=?");
-        $result = $stmtselect-> execute([$staff_name,  $product_name, $category, $quantity, $price, $date,$total, $_GET['sales_id']]);
-        $stmtselect1 = $db->prepare("SELECT sales_id,staff_name, product_name, category, quantity, price, date, total FROM sales where sales_id=?");
-        $stmtselect1-> execute([$_GET['sales_id']]);
+        $stmtselect = $db->prepare("UPDATE  sales SET empid=?,  product_id=?, quantity=?, price=?,date=?,total=?  WHERE sales_id=?");
+        $result = $stmtselect-> execute([$staff_name,  $product_name, $quantity, $price, $date,$quantity * $price, $_GET['sales_id']]);
+        $stmtselect1 = $db->prepare("SELECT sales_id, rg.staff_name, rg.empid, pd.product_name, pd.category, sl.quantity, sl.price, sl.date, total, sl.product_id FROM sales sl inner join registration rg on sl.empid = rg.empid inner join products pd on sl.product_id = pd.product_id  where sales_id= ?");
+        $stmtselect1-> execute([  intVal($_GET['sales_id'])]);
         $sale =  $stmtselect1->fetch(PDO::FETCH_ASSOC);
         header('HTTP/1.1 201 Update');
         echo json_encode($sale);
