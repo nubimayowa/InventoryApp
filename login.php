@@ -4,7 +4,9 @@ session_start();
 if (isset($_SESSION['userlogin'])){
     header("Location: index.php");
 }
-
+$cost = 10;
+$password = password_hash('admin@123', PASSWORD_BCRYPT, ["cost" => $cost]);
+echo $password;        
 ?>
 <!DOCTYPE html>
 <html  lang="en">

@@ -19,7 +19,8 @@ try{
         $mob = $data->mob;
         $doe = $data->doe;
         if($empid !== "" && $email !== "" && $pass !== "" && $mob !== "" && $doe !== "" && $staff_name !== "") {
-            $password = hash("SHA256", $pass);
+            $cost = 10;
+            $password = password_hash($pass, PASSWORD_BCRYPT, ["cost" => $cost]);
             $stmtselect = $db->prepare("insert into registration(empid, email, staff_name, pass, mob, doe) value(?, ?, ?, ?, ?, ?)");
             $result = $stmtselect-> execute([$empid, $email, $staff_name, $password, $mob, $doe]);
             $id = $db->lastInsertId();
@@ -93,8 +94,11 @@ try{
                 $doe = $data->doe;
                 if($empid !== "" && $email !== "" && $mob !== "" && $doe !== "" && $staff_name !== "") {
                     $password = "";
-                    if($pass !== "" )
-                    $password = hash("SHA256", $pass);
+                    if($pass !== "" ){
+                        $cost = 10;
+                        $password = password_hash($pass, PASSWORD_BCRYPT, ["cost" => $cost]);
+                    }
+                    // $password = password_hash("SHA256", $pass);
                     else {
                         $stmtselect2 = $db->prepare("select pass from registration where empid=?");
                         $stmtselect2->execute([$empid]);
